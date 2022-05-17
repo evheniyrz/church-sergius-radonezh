@@ -10,7 +10,8 @@
     "dev:ssr": "ng run nik-prav:serve-ssr",
     "serve:ssr": "node dist/nik-prav/server/main.js",
     "build:ssr": "ng build && ng run nik-prav:server",
-    "prerender": "ng run nik-prav:prerender"
+    "prerender": "ng run nik-prav:prerender",
+    "postinstall": "npm run build:ssr"
   },
   "private": true,
   "dependencies": {
