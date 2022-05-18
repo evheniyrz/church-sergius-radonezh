@@ -1,0 +1,14 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 320px;
+    height: auto;
+    background: rgb(150, 9, 179);
+  }
+}

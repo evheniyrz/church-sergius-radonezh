@@ -7,12 +7,28 @@ import { join } from 'path';
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
+import * as bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import { userRouter } from './db-routes/user-routes';
+import { isAdmin } from 'db-controllers/user-controller';
+
+require('dotenv').config();
+
+// const mongoose = require('mongoose');
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
-  const server = express();
+  const server = express()
+    .use(bodyParser.urlencoded({ extended: false }))
+    .use(bodyParser.json())
+    .use(userRouter);
   const distFolder = join(process.cwd(), 'dist/nik-prav/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+
+  mongoose
+    .connect(`${process.env['MONGO_PROTOCOL']}${process.env['MONGO_HOST']}${process.env['MONGO_PATH']}${process.env['MONGO_PARAMS']}`)
+    .then((resp: any) => console.log('===DB CONNECTION SUCCESSFUL==='))
+    .catch((error: any) => console.log('DB CONNECTION ERROR', error));
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
