@@ -1,8 +1,8 @@
 import * as express from 'express';
-import { isAdmin } from '../db-controllers/user-controller';
+import { getAdminUser } from '../db-controllers/user-controller';
 
 const Router = express.Router();
 
-Router.post('/users', isAdmin);
+Router.post('/users', getAdminUser);
 
 export { Router as userRouter };

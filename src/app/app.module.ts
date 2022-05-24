@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminPageGuard } from './guards/admin-page/admin-page.guard';
+import { RootStoreModule } from './root-store/root-store.module';
+import { LoginService } from './login-services/login/login.service';
+import { LoginPageModule } from './login-page/login-page.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +18,12 @@ import { AdminPageGuard } from './guards/admin-page/admin-page.guard';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    RootStoreModule,
+    HttpClientModule,
+    LoginPageModule
   ],
   providers: [
+    LoginService,
     AdminPageGuard
   ],
   bootstrap: [AppComponent]

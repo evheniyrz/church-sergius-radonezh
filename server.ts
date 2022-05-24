@@ -10,7 +10,6 @@ import { existsSync } from 'fs';
 import * as bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import { userRouter } from './db-routes/user-routes';
-import { isAdmin } from 'db-controllers/user-controller';
 
 require('dotenv').config();
 

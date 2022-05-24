@@ -1,0 +1,14 @@
+<form [formGroup]="sharedLoginForm" (ngSubmit)="emitFormValue()" class="shared-login-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" type="email" class="shared-login-form__input">
+    <mat-error *ngIf="emailControl.hasError('required')">This field required</mat-error>
+    <mat-error *ngIf="emailControl.hasError('email')">Wrong email schema</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" class="shared-login-form__input">
+    <mat-error *ngIf="passwordControl.hasError('required')">This field required</mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" class="shared-login-form__button">Login</button>
+</form>

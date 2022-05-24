@@ -1,7 +1,6 @@
 import { Users } from '../db-models/users-model';
 
-const isAdmin = (req: any, resp: any) => {
-  console.log('REQUEST', req.body);
+const getAdminUser = (req: any, resp: any) => {
   const { email, password, role } = req.body;
 
   Users.findOne({ email: { $eq: `${email}` }, password: { $eq: `${password}` }, role: { $eq: 'admin' } }).then((result) => {
@@ -23,7 +22,7 @@ const isAdmin = (req: any, resp: any) => {
   });
 };
 
-const isUser = (req: any, resp: any) => {
+const getUser = (req: any, resp: any) => {
   const { email, password, role } = req.body;
   Users.findOne({ email: { $eq: `${email}` }, password: { $eq: `${password}` }, role: { $eq: 'user' } }).then((result) => {
 
@@ -45,4 +44,4 @@ const isUser = (req: any, resp: any) => {
   });
 };
 
-export { isAdmin, isUser };
+export { getAdminUser, getUser };

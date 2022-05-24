@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-administration',
@@ -9,24 +8,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AdministrationComponent implements OnInit {
 
-  public registerForm: FormGroup;
-  constructor(private fb: FormBuilder, private httpClient: HttpClient) {
-    this.registerForm = this.fb.group(
-      {
-        email: this.fb.control('', { validators: Validators.required }),
-        password: this.fb.control('', { validators: Validators.required }),
-        role: this.fb.control('admin')
-      }
-    );
+  constructor(private store: Store) {
   }
-
   ngOnInit(): void {
-  }
-
-  public checkUser(): void {
-    if (null != this.registerForm && this.registerForm.valid) {
-      this.httpClient.post('users', this.registerForm.value).subscribe();
-    }
   }
 
 }
