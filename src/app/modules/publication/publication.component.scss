@@ -1,0 +1,48 @@
+:host {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 60px 1fr 60px;
+  grid-template-areas:
+  "header"
+  "content"
+  "footer";
+
+  .page__header {
+    grid-area: header;
+    background-color: #006400;
+    background-image: url('/assets/ornaments/ttl.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 380px;
+  }
+
+  .page__main-content {
+    grid-area: content;
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .pillar {
+      height: 100%;
+      width: 30px;
+      background-color: #006400;
+      background-image: url('/assets/ornaments/v-greece-c.png');
+      background-position: top center;
+      background-repeat: no-repeat repeat;
+      background-size: contain;
+    }
+
+    .content {
+      height: 100%;
+      flex: 1 0;
+    }
+  }
+
+  .page__footer {
+    grid-area: footer;
+    background-color: #006400;
+  }
+}
