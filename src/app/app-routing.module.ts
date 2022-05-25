@@ -5,7 +5,7 @@ import { AdminPageGuard } from './guards/admin-page/admin-page.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'posts',
+    loadChildren: () => import('./modules/public/public-page.module').then(m => m.PublicPageModule),
     pathMatch: 'full'
   },
   {
@@ -16,10 +16,6 @@ const routes: Routes = [
   {
     path: 'authorization',
     loadChildren: () => import('./login-page/login-page.module').then(m => m.LoginPageModule)
-  },
-  {
-    path: 'posts',
-    loadChildren: () => import('./modules/publication/publication.module').then(m => m.PublicationModule),
   },
   {
     path: '**',

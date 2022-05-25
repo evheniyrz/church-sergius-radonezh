@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+
+  .icon-container {
+    width: 100%;
+    max-width: 370px;
+    height: auto;
+    margin: 50px 0;
+
+    .app-main-icon {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .divider {
+    width: 100%;
+    max-width: 500px;
+    background-image: radial-gradient(#f5f3f3, transparent 70%);
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .tropar {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    line-height: 24px;
+    text-shadow: 1px 1px 1px white;
+    text-align: center;
+    color: #510a24;
+    width: 100%;
+    max-width: 420px;
+    margin: 50px 0;
+  }
+}

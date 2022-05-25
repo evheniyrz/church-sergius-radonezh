@@ -1,0 +1,6 @@
+<button mat-icon-button (click)="toggleSidenav()" class="app-menu-button">
+  <ng-container [ngSwitch]="isMenuOpened">
+    <mat-icon *ngSwitchCase="true">menu_open</mat-icon>
+    <mat-icon *ngSwitchDefault>menu</mat-icon>
+  </ng-container>
+</button>

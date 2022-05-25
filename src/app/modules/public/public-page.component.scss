@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .app-sidenav {
+    flex: 1 0;
+
+    .app-public-content {
+      background-image: url('/assets/backgrounds/wheat_1280x768.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top center;
+      background-attachment: fixed;
+      padding: 0 15px;
+    }
+  }
+}

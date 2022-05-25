@@ -1,0 +1,7 @@
+<app-public-page-header (onTriggerChange)="sideNav.toggle()" [isMenuOpened]="sidenavOpenedChange"></app-public-page-header>
+<mat-drawer-container hasBackdrop="true" class="app-sidenav">
+  <mat-drawer #sideNav="matDrawer" (openedChange)="sidenavOpenedChange = $event" mode="over">navigation</mat-drawer>
+  <mat-drawer-content class="app-public-content">
+    <router-outlet name="public-content"></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
