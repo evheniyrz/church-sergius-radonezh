@@ -4,10 +4,15 @@
   line-height: 70px;
   background-color: #006400;
   background-image: url('/assets/ornaments/ttl.png');
-  background-size: contain;
+  background-size: 80%;
   background-repeat: no-repeat;
-  background-position: bottom center;
+  background-position: center center;
   padding: 0 15px;
+
+  @media screen and (min-width: 541px) {
+    background-size: contain;
+    background-position: bottom center;
+  }
 
   .app-menu-button {
     height: auto;
