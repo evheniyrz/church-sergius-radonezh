@@ -20,7 +20,7 @@ import { LoginPageModule } from './login-page/login-page.module';
     BrowserAnimationsModule,
     RootStoreModule,
     HttpClientModule,
-    LoginPageModule
+    LoginPageModule,
   ],
   providers: [
     LoginService,

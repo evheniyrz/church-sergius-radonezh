@@ -1,2 +1,50 @@
-<p>administration works!</p>
-
+<section class="admin-dashboard__nav-section">
+  <nav class="admin-dashboard__nav">
+    <ul class="admin-dashboard__nav-list">
+      <li class="admin-dashboard__nav-item">
+        <a
+          matTooltip="Статьи"
+          matTooltipPosition="right"
+          [routerLink]="['articles']"
+          [routerLinkActive]="'active'">
+          <mat-icon>article</mat-icon>
+          <span>Articles</span>
+        </a>
+      </li>
+      <li class="admin-dashboard__nav-item">
+        <a
+          matTooltip="Рассписания служб"
+          matTooltipPosition="right"
+          [routerLink]="['timetable']"
+          [routerLinkActive]="'active'">
+          <mat-icon>view_timeline</mat-icon>
+          <span>Timetable</span>
+        </a>
+      </li>
+      <li class="admin-dashboard__nav-item">
+        <a
+          matTooltip="Проповеди"
+          matTooltipPosition="right"
+          [routerLink]="['preachings']"
+          [routerLinkActive]="'active'">
+          <mat-icon>topic</mat-icon>
+          <span>Preaching</span>
+        </a>
+      </li>
+      <li class="admin-dashboard__nav-item">
+        <a
+          matTooltip="Изречения дня"
+          matTooltipPosition="right"
+          #rla="routerLinkActive"
+          [routerLink]="['sayings']"
+          [routerLinkActive]="'active'">
+          <mat-icon>menu_book</mat-icon>
+          <span>Sayings of the day</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</section>
+<section class="admin-dashboard__content">
+  <router-outlet></router-outlet>
+</section>

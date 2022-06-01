@@ -1,0 +1,34 @@
+<mat-form-field appearance="fill">
+  <mat-label>Select an image to copy URL...</mat-label>
+  <mat-select [formControl]="imgUrlSelect">
+    <mat-option>
+      <div class="option-content__container">
+        <img src="" alt="">
+        <span class="option-content__description"></span>
+      </div>
+    </mat-option>
+  </mat-select>
+  <button
+    mat-icon-button
+    matTooltip="Click to copy the URL of the selected image"
+    matTooltipPosition="right"
+    matSuffix
+    [cdkCopyToClipboard]="'abc dfc'"
+    (click)="$event.stopImmediatePropagation()">
+    <mat-icon>content_copy</mat-icon>
+  </button>
+</mat-form-field>
+
+
+<form [formGroup]="editorForm" class="editor-form" (ngSubmit)="getContent()">
+  <div class="NgxEditor__Wrapper">
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets"> </ngx-editor-menu>
+    <ngx-editor
+      [editor]="editor"
+      [outputFormat]="'doc'"
+      formControlName="editorContent"
+      [placeholder]="'Type here...'"
+    ></ngx-editor>
+  </div>
+  <button mat-raised-button color="primary" type="submit" class="editor-form__post-button">Post Content</button>
+</form>

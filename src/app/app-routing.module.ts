@@ -25,7 +25,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
+    initialNavigation: 'enabledBlocking',
+    // enableTracing: true
   })],
   exports: [RouterModule]
 })

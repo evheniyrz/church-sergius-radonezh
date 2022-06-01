@@ -1,0 +1,15 @@
+:host {
+  display: block;
+
+  .default-content {
+    p {
+      font-size: 18px;
+      text-align: center;
+
+      span.wrong-name-section {
+        text-decoration: underline;
+        color: #ff0000;
+      }
+    }
+  }
+}

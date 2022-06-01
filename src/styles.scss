@@ -28,3 +28,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 /**END scrollbar styles*/
+
+.NgxEditor__Color {
+  box-shadow: 1px 1px 3px 0px grey;
+  cursor: pointer;
+}

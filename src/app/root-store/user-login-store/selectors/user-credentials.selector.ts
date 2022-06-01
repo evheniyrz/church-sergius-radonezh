@@ -9,6 +9,6 @@ export const selectAdminUser = createSelector(
 
     return null != userCredential || (Array.isArray(userCredential) &&
       (userCredential as Array<UserLoginState>).length > 0) ?
-      userCredential.find((credential) => credential?.role === 'admin') : null;;
+      userCredential.find((credential) => credential?.role === 'admin') : null;
   }
 );

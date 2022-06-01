@@ -1,0 +1,13 @@
+:host {
+  display: block;
+
+  .editor-form {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    .editor-form__post-button {
+      margin-top: 30px;
+    }
+  }
+}

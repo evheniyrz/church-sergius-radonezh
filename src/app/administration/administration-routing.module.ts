@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContentEditorComponent } from './components/content-editor/content-editor.component';
+import { ContentListComponent } from './components/content-list/content-list.component';
 import { AdministrationComponent } from './page/administration.component';
 
 const routes: Routes = [
@@ -10,7 +12,21 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: AdministrationComponent
+    component: AdministrationComponent,
+    children: [
+      {
+        path: ':sectionId',
+        component: ContentListComponent,
+      },
+      {
+        path: ':sectionId/:contentId',
+        component: ContentEditorComponent
+      },
+      {
+        path: ':sectionId/add-new',
+        component: ContentEditorComponent
+      },
+    ]
   },
   {
     path: '**',
