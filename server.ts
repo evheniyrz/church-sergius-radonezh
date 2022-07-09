@@ -24,11 +24,6 @@ export function app(): express.Express {
   const distFolder = join(process.cwd(), 'dist/nik-prav/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
-  mongoose
-    .connect(`${process.env['MONGO_PROTOCOL']}${process.env['MONGO_HOST']}${process.env['MONGO_PATH']}${process.env['MONGO_PARAMS']}`)
-    .then((resp: any) => console.log('===DB CONNECTION SUCCESSFUL==='))
-    .catch((error: any) => console.log('DB CONNECTION ERROR', error));
-
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule,
@@ -59,6 +54,11 @@ function run(): void {
   const server = app();
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
+
+    mongoose
+      .connect(`${process.env['MONGO_PROTOCOL']}${process.env['MONGO_HOST']}${process.env['MONGO_PATH']}${process.env['MONGO_PARAMS']}`)
+      .then((resp: any) => console.log('===DB CONNECTION SUCCESSFUL==='))
+      .catch((error: any) => console.log('DB CONNECTION ERROR', error));
   });
 }
 

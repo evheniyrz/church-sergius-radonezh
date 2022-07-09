@@ -8,4 +8,5 @@ export interface UserCredentials {
   password: string;
   role: 'admin' | 'user'
   id: string;
+  name: string;
 }

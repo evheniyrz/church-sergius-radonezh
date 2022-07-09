@@ -7,5 +7,6 @@ export interface UserLoginState extends LoginPayload {
   role: 'user' | 'admin';
   id: string;
   expiredAt: number;
+  name: string;
 }
 
