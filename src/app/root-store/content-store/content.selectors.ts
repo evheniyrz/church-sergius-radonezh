@@ -18,7 +18,6 @@ const {
 } = contentEntityAdapter.getSelectors();
 
 export const selectContentEntities = createSelector(contentRootFeatureSelector, selectRouteParams, (state, { sectionId }) => {
-  console.log('CONTENT_ENT', { state, sectionId });
   return selectEntities(state[sectionId]);
 })
 
@@ -28,7 +27,7 @@ export const selectContentEntities = createSelector(contentRootFeatureSelector, 
 // export const selectSayingEntities = createSelector(sayingsFeatureSelector, selectEntities);
 
 export const selectContentList = createSelector(contentRootFeatureSelector, selectRouteParams, (state, { sectionId }) => {
-  console.log('CONTENT_LST', { state, sectionId, v: state[sectionId] });
+  console.dir({ state, sectionId, v: state[sectionId] });
   return null != state[sectionId] ? selectAll(state[sectionId]) : null;
 });
 
@@ -38,7 +37,7 @@ export const selectContentList = createSelector(contentRootFeatureSelector, sele
 // export const selectSayings = createSelector(sayingsFeatureSelector, selectAll);
 
 export const selectContentItem = createSelector(selectContentEntities, selectRouteNestedParams, (content, { contentId }) => {
-  console.log('CONTENT_ITM', { content, contentId });
+
   return null != content[contentId] ? content[contentId] : null;
 });
 

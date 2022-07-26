@@ -1,10 +1,21 @@
 import { createAction, props } from '@ngrx/store';
 import { Content } from './model/content.model';
 
-export const loadArticles = createAction('[CONTENT] Load articles', props<{ articles: Content[] }>());
-export const loadTimetable = createAction('[CONTENT] Load timetable', props<{ timetable: Content[] }>());
-export const loadPreaching = createAction('[CONTENT] Load preaching', props<{ preaching: Content[] }>());
-export const loadSayings = createAction('[CONTENT] Load sayings', props<{ sayings: Content[] }>());
+// export const loadArticles = createAction('[CONTENT] Load articles', props<{ sectionId: string }>());
+// export const loadTimetables = createAction('[CONTENT] Load timetables', props<{ sectionId: string }>());
+// export const loadPreachings = createAction('[CONTENT] Load preachings', props<{ sectionId: string }>());
+// export const loadSayings = createAction('[CONTENT] Load sayings', props<{ sectionId: string }>());
+
+export const contentErrorAction = createAction('[CONTENT ERROR] Load content error', props<{ message: string }>());
+
+export const loadSectionContent = createAction('[CONTENT] Load section content', props<{ sectionId: string }>());
+
+export const setArticles = createAction('[CONTENT] Set articles', props<{ articles: Content[] }>());
+export const setTimetables = createAction('[CONTENT] Set timetables', props<{ timetables: Content[] }>());
+export const setPreachings = createAction('[CONTENT] Set preachings', props<{ preachings: Content[] }>());
+export const setSayings = createAction('[CONTENT] Set sayings', props<{ sayings: Content[] }>());
+
+export const setSectionContent = createAction('[CONTENT] Set section content', props<{ [sectionId: string]: Content[] }>());
 
 export const getArticles = createAction('[CONTENT] Get articles', props<{ articles: Content[] }>());
 export const getTimetable = createAction('[CONTENT] Get timetable', props<{ timetable: Content[] }>());
@@ -15,6 +26,8 @@ export const postArticle = createAction('[CONTENT] Post article', props<{ articl
 export const postTimetable = createAction('[CONTENT] Post timetable', props<{ timetable: Content }>());
 export const postPreaching = createAction('[CONTENT] Post preaching', props<{ preaching: Content }>());
 export const postSaying = createAction('[CONTENT] Post saying', props<{ saying: Content }>());
+
+export const postContentAction = createAction('[CONTENT] Post content', props<{ content: Content, sectionId: string }>());
 
 export const deleteArticle = createAction('[CONTENT] Delete article', props<{ id: string; }>());
 export const deleteTimetable = createAction('[CONTENT] Delete timetable', props<{ id: string; }>());

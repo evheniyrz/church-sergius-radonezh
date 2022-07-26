@@ -7,8 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminPageGuard } from './guards/admin-page/admin-page.guard';
 import { RootStoreModule } from './root-store/root-store.module';
-import { LoginService } from './login-services/login/login.service';
 import { LoginPageModule } from './login-page/login-page.module';
+import { ApiModule } from './api/api.module';
 
 @NgModule({
   declarations: [
@@ -21,9 +21,9 @@ import { LoginPageModule } from './login-page/login-page.module';
     RootStoreModule,
     HttpClientModule,
     LoginPageModule,
+    ApiModule,
   ],
   providers: [
-    LoginService,
     AdminPageGuard
   ],
   bootstrap: [AppComponent]

@@ -20,7 +20,7 @@
 </mat-form-field>
 
 
-<form [formGroup]="editorForm" class="editor-form" (ngSubmit)="getContent()">
+<form [formGroup]="editorForm" class="editor-form" (ngSubmit)="postContent()">
   <div class="NgxEditor__Wrapper">
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets" class="sticky-editor-menu"> </ngx-editor-menu>
     <ngx-editor

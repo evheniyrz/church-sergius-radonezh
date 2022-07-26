@@ -1,8 +1,16 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const articleSchema = new Schema(
+const baseContentSchema = new Schema(
   {
+    id: {
+      type: String,
+      required: false
+    },
+    contentType: {
+      type: String,
+      required: true
+    },
     author: {
       type: String,
       required: true
@@ -17,19 +25,23 @@ const articleSchema = new Schema(
     },
     createdAt: {
       type: Date,
+      default: Date.now,
       required: true
     },
     updatedAt: {
       type: Date,
+      default: Date.now,
       required: true
     },
     editor: {
       type: String,
       required: false
     }
+  },
+  {
+    autoIndex: false,
+    autoCreate: false
   }
 );
 
-const Article = mongoose.model('Article', articleSchema);
-
-export { Article };
+export { baseContentSchema };

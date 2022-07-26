@@ -10,6 +10,7 @@ import { existsSync } from 'fs';
 import * as bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import { userRouter } from './db-routes/user-routes';
+import { contentRouter } from 'db-routes/content-routes';
 
 require('dotenv').config();
 
@@ -20,7 +21,8 @@ export function app(): express.Express {
   const server = express()
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
-    .use(userRouter);
+    .use(userRouter)
+    .use(contentRouter);
   const distFolder = join(process.cwd(), 'dist/nik-prav/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 

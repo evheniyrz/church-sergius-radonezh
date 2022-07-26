@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { contentReducers } from './content.reducers';
+import { ContentEffect } from './content.effect';
 
 
 
@@ -11,7 +12,7 @@ import { contentReducers } from './content.reducers';
   imports: [
     CommonModule,
     StoreModule.forFeature('content', contentReducers),
-    EffectsModule.forFeature([])
+    EffectsModule.forFeature([ContentEffect])
   ]
 })
 export class AdminDashboardStoreModule { }

@@ -1,0 +1,64 @@
+:host {
+  .grid-content-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 320px));
+    grid-auto-rows: auto;
+    padding: 15px;
+
+    .content-card {
+      background-color: #eeeeee;
+      box-shadow: 1px 0px 7px 0px #777;
+      border-radius: 5px;
+      overflow: hidden;
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        background-color: rgba(128, 128, 128, 0.3);
+        padding: 5px;
+
+        .tile-header-button {
+          border: 1px solid #ffffff;
+          border-radius: 3px;
+
+          &:first-child {
+            margin-right: 10px;
+          }
+        }
+
+        .header-content-type {
+          margin-left: auto;
+        }
+      }
+
+      .content-image {
+
+        .item-image {
+          display: block;
+          max-width: 100%;
+          aspect-ratio: 1/1;
+          object-position: center;
+          object-fit: cover;
+        }
+      }
+
+      .content-description {
+        padding: 15px;
+
+        .content-create {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0;
+        }
+
+        .edit {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+}

@@ -9,7 +9,7 @@ interface StateModel {
 }
 export interface ContentStoreState extends StateModel {
   articles: ContentState;
-  timetable: ContentState;
+  timetables: ContentState;
   preachings: ContentState;
   sayings: ContentState;
 }

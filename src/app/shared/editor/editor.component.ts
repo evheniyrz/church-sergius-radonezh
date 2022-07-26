@@ -1,6 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Editor, Toolbar, Validators } from 'ngx-editor';
+import { take } from 'rxjs';
+import { ContentService } from 'src/app/api/services/content/content.service';
+import { postArticle, postContentAction } from 'src/app/root-store/content-store/content.actions';
+import { Content, ContentType } from 'src/app/root-store/content-store/model/content.model';
+import { UserLoginState } from 'src/app/root-store/user-login-store/models/login-payload.model';
+
 
 @Component({
   selector: 'app-editor',
@@ -8,6 +15,7 @@ import { Editor, Toolbar, Validators } from 'ngx-editor';
   styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent implements OnInit, OnDestroy {
+  @Input() contentConfig?: { userData: UserLoginState | null | undefined; sectionId: string; }
 
   public editor: Editor;
   public toolbar: Toolbar = [
@@ -35,7 +43,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   public editorForm: FormGroup;
   public imgUrlSelect: FormControl = new FormControl('');
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.editor = new Editor();
     // this.editor.setContent(value);
     // const html = toHTML(this.jsonDoc);
@@ -50,9 +58,20 @@ export class EditorComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  public getContent(): void {
-    if (null != this.editorForm && this.editorForm.valid) {
-      console.log('CONTENT_VAL', this.editorForm.value)
+  public postContent(): void {
+    if (null != this.editorForm && this.editorForm.valid && null != this.contentConfig?.userData) {
+      const content: Content = { content: this.editorForm.value } as Content;
+      content.author = this.contentConfig?.userData?.name;
+      content.authorId = this.contentConfig.userData.id;
+      content.contentType = this.contentConfig.sectionId as ContentType;
+
+      this.store.dispatch(postContentAction({ content, sectionId: content.contentType }));
+      // this.contentService.postContent(this.contentConfig.sectionId as ContentType, content)
+      //   .pipe(
+      //     take(1)
+      //   ).subscribe();
+
+      console.log('CONTENT_VAL', this.editorForm.value, this.contentConfig)
     }
   }
 

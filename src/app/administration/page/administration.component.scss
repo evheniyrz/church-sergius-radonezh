@@ -55,5 +55,13 @@
   .admin-dashboard__content {
     grid-area: content;
     background-color: #f5f5f5;
+
+    .no-section-loaded {
+      .info {
+        text-transform: uppercase;
+        text-align: center;
+        margin: 12px 0;
+      }
+    }
   }
 }

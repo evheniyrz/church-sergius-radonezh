@@ -20,7 +20,7 @@ export const articlesFeature = createFeature(
     name: 'articles',
     reducer: createReducer(
       contentInitialState,
-      on(DashboardAction.loadArticles, (state, { articles }) => contentEntityAdapter.setAll(articles, state)),
+      on(DashboardAction.setArticles, (state, { articles }) => contentEntityAdapter.setAll(articles, state)),
       on(DashboardAction.postArticle, (state, { article }) => contentEntityAdapter.addOne(article, state)),
       on(DashboardAction.updateArticle, (state, { article }) => contentEntityAdapter.upsertOne(article, state)),
       on(DashboardAction.deleteArticle, (state, { id }) => contentEntityAdapter.removeOne(id, state)),
@@ -30,10 +30,10 @@ export const articlesFeature = createFeature(
 
 export const timetableFeature = createFeature(
   {
-    name: 'timetable',
+    name: 'timetables',
     reducer: createReducer(
       contentInitialState,
-      on(DashboardAction.loadTimetable, (state, { timetable }) => contentEntityAdapter.setAll(timetable, state)),
+      on(DashboardAction.setTimetables, (state, { timetables }) => contentEntityAdapter.setAll(timetables, state)),
       on(DashboardAction.postTimetable, (state, { timetable }) => contentEntityAdapter.addOne(timetable, state)),
       on(DashboardAction.updateTimetable, (state, { timetable }) => contentEntityAdapter.upsertOne(timetable, state)),
       on(DashboardAction.deleteTimetable, (state, { id }) => contentEntityAdapter.removeOne(id, state)),
@@ -46,7 +46,7 @@ export const preachingFeature = createFeature(
     name: 'preachings',
     reducer: createReducer(
       contentInitialState,
-      on(DashboardAction.loadPreaching, (state, { preaching }) => contentEntityAdapter.setAll(preaching, state)),
+      on(DashboardAction.setPreachings, (state, { preachings }) => contentEntityAdapter.setAll(preachings, state)),
       on(DashboardAction.postPreaching, (state, { preaching }) => contentEntityAdapter.addOne(preaching, state)),
       on(DashboardAction.updatePreaching, (state, { preaching }) => contentEntityAdapter.upsertOne(preaching, state)),
       on(DashboardAction.deletePreaching, (state, { id }) => contentEntityAdapter.removeOne(id, state)),
@@ -59,7 +59,7 @@ export const sayingsFeature = createFeature(
     name: 'sayings',
     reducer: createReducer(
       contentInitialState,
-      on(DashboardAction.loadSayings, (state, { sayings }) => contentEntityAdapter.setAll(sayings, state)),
+      on(DashboardAction.setSayings, (state, { sayings }) => contentEntityAdapter.setAll(sayings, state)),
       on(DashboardAction.postSaying, (state, { saying }) => contentEntityAdapter.addOne(saying, state)),
       on(DashboardAction.updateSaying, (state, { saying }) => contentEntityAdapter.upsertOne(saying, state)),
       on(DashboardAction.deleteSaying, (state, { id }) => contentEntityAdapter.removeOne(id, state)),
@@ -69,7 +69,7 @@ export const sayingsFeature = createFeature(
 
 export const contentReducers: ActionReducerMap<ContentStoreState> = {
   articles: articlesFeature.reducer,
-  timetable: timetableFeature.reducer,
+  timetables: timetableFeature.reducer,
   preachings: preachingFeature.reducer,
   sayings: sayingsFeature.reducer
 };

@@ -11,6 +11,11 @@ import { NgxEditorModule } from 'ngx-editor';
 import { MatIconModule } from '@angular/material/icon';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { TimetablesEditorComponent } from './timetables-editor/timetables-editor.component';
+import { GridListComponent } from './grid-list/grid-list.component';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule(
   {
@@ -25,6 +30,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       MatIconModule,
       ClipboardModule,
       MatTooltipModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
       NgxEditorModule.forChild({
         locals: {
           // menu
@@ -63,11 +70,18 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ],
     declarations: [
       LoginFormComponent,
-      EditorComponent
+      EditorComponent,
+      GridListComponent,
+      TimetablesEditorComponent
     ],
     exports: [
       LoginFormComponent,
-      EditorComponent
+      EditorComponent,
+      GridListComponent,
+      TimetablesEditorComponent
+    ],
+    providers: [
+      MatDatepickerModule
     ]
   }
 )

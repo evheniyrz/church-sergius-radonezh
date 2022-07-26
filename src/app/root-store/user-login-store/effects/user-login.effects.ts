@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { catchError, concatMap, exhaustMap, map, of } from 'rxjs';
-import { LoginService } from 'src/app/login-services/login/login.service';
-import { UserLoginResponse } from 'src/app/login-services/login/models/login-success-response.model';
+import { LoginService } from 'src/app/api/services/login/login.service';
+import { UserLoginResponse } from 'src/app/api/services/login/models/login-success-response.model';
 import { adminAccessAllowed, adminAccessDenied, AdminLoginActionTypes } from '../actions';
 import { LoginPayload, UserLoginState } from '../models/login-payload.model';
 

@@ -28,11 +28,12 @@ const getUser = (req: any, resp: any) => {
   Users.findOne({ email: { $eq: `${email}` }, password: { $eq: `${password}` }, role: { $eq: 'user' } }).then((result) => {
 
     if (null != result) {
-      const { email, password, role, _id } = result;
+      const { email, password, role, _id, name } = result;
       const response = {
         email,
         password,
         role,
+        name,
         id: _id.toString()
       };
 

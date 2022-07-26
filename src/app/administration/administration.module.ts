@@ -10,6 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ContentListComponent } from './components/content-list/content-list.component';
 import { ContentEditorComponent } from './components/content-editor/content-editor.component';
 import { SharedModule } from '../shared/shared.module';
+import { ContentResolver } from './services/content/content.resolver';
 
 
 @NgModule({
@@ -25,6 +26,9 @@ import { SharedModule } from '../shared/shared.module';
     MatIconModule,
     MatTooltipModule,
     SharedModule
+  ],
+  providers: [
+    ContentResolver
   ]
 })
 export class AdministrationModule { }
