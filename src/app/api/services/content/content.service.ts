@@ -8,19 +8,22 @@ export class ContentService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public postContent(payload: Content): Observable<any> {
-    return this.httpClient.post('post-content', payload);
+  public postContent(payload: Content | Content[], sectionId: string): Observable<any> {
+    return this.httpClient.post('post-content', payload, { params: { sectionId } });
   }
 
-  public updateContent(apiPath: string, id: string, content: Content): Observable<any> {
-    const path: string = `${apiPath}/${id}`;
-    return this.httpClient.patch(path, content);
+  public updateContent(content: Content, id: string, sectionId: string): Observable<any> {
+    return this.httpClient.patch('update-content', content, { params: { id, sectionId } });
   }
 
   public getContent(contentSectionId: string, author: string = 'admin'): Observable<any> {
 
     const params = new HttpParams().set('author', author).set('contentName', contentSectionId);
     return this.httpClient.get('get-content', { params });
+  }
+
+  public deleteContent(contentId: string, sectionId: string): Observable<any> {
+    return this.httpClient.delete('delete-content', { params: { contentId, sectionId } });
   }
 
   public getArticle(id: string): Observable<any> {

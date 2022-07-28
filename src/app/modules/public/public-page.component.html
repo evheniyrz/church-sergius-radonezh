@@ -1,6 +1,29 @@
 <app-public-page-header (onTriggerChange)="sideNav.toggle()" [isMenuOpened]="sidenavOpenedChange"></app-public-page-header>
 <mat-drawer-container hasBackdrop="true" class="app-sidenav">
-  <mat-drawer #sideNav="matDrawer" (openedChange)="sidenavOpenedChange = $event" mode="over">navigation</mat-drawer>
+  <mat-drawer #sideNav="matDrawer" (openedChange)="sidenavOpenedChange = $event" mode="over">
+    <ul class="navigation-list">
+      <li class="navigation-item">
+        <a [routerLink]="['publication', 'articles']" class="navigation-item-link">
+          статьи
+        </a>
+      </li>
+      <li class="navigation-item">
+        <a [routerLink]="['publication', 'timetables']" class="navigation-item-link">
+          рассписание служб
+        </a>
+      </li>
+      <li class="navigation-item">
+        <a [routerLink]="['publication', 'preachings']" class="navigation-item-link">
+          проповеди
+        </a>
+      </li>
+      <li class="navigation-item">
+        <a [routerLink]="['publication', 'sayings']" class="navigation-item-link">
+          слово дня
+        </a>
+      </li>
+    </ul>
+  </mat-drawer>
   <mat-drawer-content class="app-public-content">
     <router-outlet name="public-content"></router-outlet>
   </mat-drawer-content>

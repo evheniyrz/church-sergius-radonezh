@@ -2,9 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Editor, Toolbar, Validators } from 'ngx-editor';
-import { take } from 'rxjs';
-import { ContentService } from 'src/app/api/services/content/content.service';
-import { postArticle, postContentAction } from 'src/app/root-store/content-store/content.actions';
+import { postContentAction, updateContent } from 'src/app/root-store/content-store/content.actions';
 import { Content, ContentType } from 'src/app/root-store/content-store/model/content.model';
 import { UserLoginState } from 'src/app/root-store/user-login-store/models/login-payload.model';
 
@@ -15,7 +13,14 @@ import { UserLoginState } from 'src/app/root-store/user-login-store/models/login
   styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent implements OnInit, OnDestroy {
-  @Input() contentConfig?: { userData: UserLoginState | null | undefined; sectionId: string; }
+  @Input() contentConfig?: { userData: UserLoginState | null | undefined; sectionId: string; };
+  @Input() set contentToEdit(contentToEdit: Content | null | undefined) {
+    if (null != contentToEdit) {
+      this.editorForm.setValue({ editorContent: contentToEdit.content.editorContent });
+      this.contentId = contentToEdit.id;
+      this.isContentUnderEdit = true;
+    }
+  }
 
   public editor: Editor;
   public toolbar: Toolbar = [
@@ -43,6 +48,10 @@ export class EditorComponent implements OnInit, OnDestroy {
   public editorForm: FormGroup;
   public imgUrlSelect: FormControl = new FormControl('');
 
+  public isContentUnderEdit = false;
+
+  private contentId: string | null | undefined;
+
   constructor(private fb: FormBuilder, private store: Store) {
     this.editor = new Editor();
     // this.editor.setContent(value);
@@ -65,13 +74,18 @@ export class EditorComponent implements OnInit, OnDestroy {
       content.authorId = this.contentConfig.userData.id;
       content.contentType = this.contentConfig.sectionId as ContentType;
 
-      this.store.dispatch(postContentAction({ content, sectionId: content.contentType }));
-      // this.contentService.postContent(this.contentConfig.sectionId as ContentType, content)
-      //   .pipe(
-      //     take(1)
-      //   ).subscribe();
+      switch (this.isContentUnderEdit) {
+        case true:
+          if (null != this.contentId) {
+            content.updatedAt = Date.now();
+            this.store.dispatch(updateContent({ content, contentId: this.contentId, sectionId: this.contentConfig.sectionId }));
+          }
+          break;
 
-      console.log('CONTENT_VAL', this.editorForm.value, this.contentConfig)
+        default:
+          this.store.dispatch(postContentAction({ content, sectionId: content.contentType }));
+          break;
+      }
     }
   }
 

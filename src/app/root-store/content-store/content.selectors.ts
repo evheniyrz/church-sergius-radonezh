@@ -27,7 +27,7 @@ export const selectContentEntities = createSelector(contentRootFeatureSelector, 
 // export const selectSayingEntities = createSelector(sayingsFeatureSelector, selectEntities);
 
 export const selectContentList = createSelector(contentRootFeatureSelector, selectRouteParams, (state, { sectionId }) => {
-  console.dir({ state, sectionId, v: state[sectionId] });
+
   return null != state[sectionId] ? selectAll(state[sectionId]) : null;
 });
 

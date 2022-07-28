@@ -19,6 +19,25 @@ export interface EditorContent {
     type: string;
   }[]
 }
+
+export interface TimetableContent {
+  dateRange: {
+    startDate: string;
+    endDate: string;
+  };
+  timetables: [
+    {
+      date: string;
+      description: [
+        {
+          hours: string;
+          minutes: string;
+          text: string;
+        }
+      ]
+    }
+  ]
+}
 export interface Content {
   id: string;
   contentType: ContentType;
@@ -27,8 +46,8 @@ export interface Content {
   createdAt: string;
   content: {
     editorContent: {
-      content: EditorContent[];
-      type: 'doc | html';
+      content: EditorContent[] | TimetableContent;
+      type: 'doc' | 'html' | 'formGroupValue';
     }
   };
   editor?: string;

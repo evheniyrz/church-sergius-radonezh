@@ -1,4 +1,4 @@
 <ng-container [ngSwitch]="contentCredentials?.sectionId">
-  <app-timetables-editor *ngSwitchCase="'timetables'"></app-timetables-editor>
-  <app-editor *ngSwitchDefault [contentConfig]="contentCredentials"></app-editor>
+  <app-timetables-editor *ngSwitchCase="'timetables'" [contentConfig]="contentCredentials" [contentToEdit]="content$ | async"></app-timetables-editor>
+  <app-editor *ngSwitchDefault [contentConfig]="contentCredentials" [contentToEdit]="content$ | async"></app-editor>
 </ng-container>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,8 @@ import { AdminPageGuard } from './guards/admin-page/admin-page.guard';
 import { RootStoreModule } from './root-store/root-store.module';
 import { LoginPageModule } from './login-page/login-page.module';
 import { ApiModule } from './api/api.module';
+import '@angular/common/locales/global/ru';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { ApiModule } from './api/api.module';
     ApiModule,
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'ru' },
     AdminPageGuard
   ],
   bootstrap: [AppComponent]

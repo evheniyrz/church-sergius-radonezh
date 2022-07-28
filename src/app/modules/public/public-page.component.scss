@@ -8,6 +8,30 @@
   .app-sidenav {
     flex: 1 0;
 
+    mat-drawer {
+      background-color: #006400;
+
+      .navigation-list {
+        margin: 0;
+        list-style: none;
+        max-width: 240px;
+        padding: 0 0 0 15px;
+
+        .navigation-item {
+
+          .navigation-item-link {
+            display: block;
+            padding: 10px;
+            text-transform: capitalize;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+
     .app-public-content {
       background-image: url('/assets/backgrounds/wheat.jpg');
       background-repeat: no-repeat;

@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { deleteContent } from 'src/app/root-store/content-store/content.actions';
 
 export interface ContentList {
+  contentId: string;
   contentType: string;
   title: string;
   author: string;
@@ -19,9 +22,13 @@ export class GridListComponent implements OnInit {
 
   @Input() contentList!: ContentList[];
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
+  }
+
+  public deleteContent(contentId: string, sectionId: string): void {
+    this.store.dispatch(deleteContent({ contentId, sectionId }))
   }
 
 }

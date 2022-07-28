@@ -34,7 +34,7 @@ export const timetableFeature = createFeature(
     reducer: createReducer(
       contentInitialState,
       on(DashboardAction.setTimetables, (state, { timetables }) => contentEntityAdapter.setAll(timetables, state)),
-      on(DashboardAction.postTimetable, (state, { timetable }) => contentEntityAdapter.addOne(timetable, state)),
+      on(DashboardAction.postTimetables, (state, { timetables }) => contentEntityAdapter.addMany(timetables, state)),
       on(DashboardAction.updateTimetable, (state, { timetable }) => contentEntityAdapter.upsertOne(timetable, state)),
       on(DashboardAction.deleteTimetable, (state, { id }) => contentEntityAdapter.removeOne(id, state)),
     )

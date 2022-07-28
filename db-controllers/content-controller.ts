@@ -19,13 +19,47 @@ const getContents = (req: Request, resp: Response) => {
 
 const postContent = (req: Request, resp: Response) => {
   const content = req.body;
+  const { sectionId } = req.query;
 
-  baseContentSchema.set('collection', content.contentType as string);
-  mongoose.model(content.contentType as string, baseContentSchema).create(content)
-    .then(result => {
-      result.id = result._id.toString();
-      resp.status(200).send(result);
+  baseContentSchema.set('collection', sectionId as string);
+  mongoose.model(sectionId as string, baseContentSchema).create(content)
+    .then(dbResponse => {
+      console.log('POST CNT CNTRL', { dbResponse });
+      if (!Array.isArray(dbResponse)) {
+        dbResponse.id = dbResponse._id.toString();
+      } else {
+        dbResponse.forEach(element => {
+          element.id = element._id.toString();
+        });
+      }
+      resp.status(200).send(dbResponse);
     });
 }
 
-export { getContents, postContent };
+const updateContent = (req: Request, resp: Response) => {
+  const content = req.body;
+  const { id, sectionId } = req.query;
+
+  baseContentSchema.set('collection', sectionId as string);
+  mongoose.model(sectionId as string, baseContentSchema).findOneAndUpdate({ _id: id }, content, { new: true })
+    .then(dbResponse => {
+      console.log('POST CNT CNTRL', { dbResponse });
+      dbResponse.id = dbResponse._id.toString();
+
+      resp.status(200).send(dbResponse);
+    });
+}
+
+const deleteContent = (req: Request, resp: Response) => {
+  const { contentId, sectionId } = req.query;
+
+  baseContentSchema.set('collection', sectionId as string);
+  mongoose.model(sectionId as string, baseContentSchema).deleteOne({ _id: contentId })
+    .then(dbResponse => {
+      console.log('POST CNT CNTRL', { dbResponse });
+
+      resp.status(200).send(dbResponse);
+    });
+}
+
+export { getContents, postContent, updateContent, deleteContent };

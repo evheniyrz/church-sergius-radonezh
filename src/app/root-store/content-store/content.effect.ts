@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { exhaustMap, map } from 'rxjs';
 import { ContentService } from 'src/app/api/services/content/content.service';
-import { contentErrorAction, loadSectionContent, postArticle, postContentAction, postPreaching, postSaying, postTimetable, setArticles, setPreachings, setSayings, setSectionContent, setTimetables } from './content.actions';
+import { contentErrorAction, deleteArticle, deleteContent, deletePreaching, deleteSaying, deleteTimetable, loadSectionContent, postArticle, postContentAction, postPreaching, postSaying, postTimetables, setArticles, setPreachings, setSayings, setSectionContent, setTimetables, updateArticle, updateContent, updatePreaching, updateSaying, updateTimetable } from './content.actions';
 import { Content } from './model/content.model';
 
 @Injectable()
@@ -42,7 +42,7 @@ export class ContentEffect {
     ofType(postContentAction.type),
     exhaustMap((action: Action & { content: Content; sectionId: string; }) => {
 
-      return this.contentService.postContent(action.content).pipe(
+      return this.contentService.postContent(action.content, action.sectionId).pipe(
         map(response => {
 
           switch (action.sectionId) {
@@ -51,7 +51,7 @@ export class ContentEffect {
               return postArticle({ article: response });
 
             case 'timetables':
-              return postTimetable({ timetable: response });
+              return postTimetables({ timetables: response });
 
             case 'preachings':
               return postPreaching({ preaching: response });
@@ -65,6 +65,63 @@ export class ContentEffect {
         })
 
       );
+    })
+  ));
+
+  updateContent$ = createEffect(() => this.actions$.pipe(
+    ofType(updateContent.type),
+    exhaustMap((action: Action & { content: Content; contentId: string; sectionId: string; }) => {
+      return this.contentService.updateContent(action.content, action.contentId, action.sectionId).pipe(
+        map(response => {
+
+          switch (action.sectionId) {
+            case 'articles':
+
+              return updateArticle({ article: response });
+
+            case 'timetables':
+              return updateTimetable({ timetable: response });
+
+            case 'preachings':
+              return updatePreaching({ preaching: response });
+
+            case 'sayings':
+              return updateSaying({ saying: response });
+
+            default:
+              return contentErrorAction({ message: `Unrecognized section ID => ${action.sectionId}` });
+          }
+        })
+
+      );
+    })
+  ));
+
+  deleteContent$ = createEffect(() => this.actions$.pipe(
+    ofType(deleteContent.type),
+    exhaustMap((action: Action & { contentId: string; sectionId: string; }) => {
+      return this.contentService.deleteContent(action.contentId, action.sectionId).pipe(
+        map(response => {
+
+          switch (action.sectionId) {
+            case 'articles':
+
+              return deleteArticle({ id: action.contentId });
+
+            case 'timetables':
+              return deleteTimetable({ id: action.contentId });
+
+            case 'preachings':
+              return deletePreaching({ id: action.contentId });
+
+            case 'sayings':
+              return deleteSaying({ id: action.contentId });
+
+            default:
+              return contentErrorAction({ message: `Unrecognized section ID => ${action.sectionId}` });
+          }
+        })
+      )
     })
   ));
 }

@@ -1,11 +1,14 @@
 <div class="grid-content-container">
   <div *ngFor="let content of contentList;" class="content-card">
     <div class="card-header">
-      <button mat-icon-button class="tile-header-button">
+      <a [routerLink]="[content.contentId]" mat-icon-button class="tile-header-button">
         <mat-icon matTooltip="edit/редактировать">edit</mat-icon>
-      </button>
+      </a>
       <button mat-icon-button class="tile-header-button">
-        <mat-icon matTooltip="to view/просмотреть">visibility</mat-icon>
+        <mat-icon matTooltip="view/просмотреть">visibility</mat-icon>
+      </button>
+      <button mat-icon-button color="accent" (click)="deleteContent(content.contentId, content.contentType)" class="tile-header-button">
+        <mat-icon matTooltip="delete/удалить">delete_outline</mat-icon>
       </button>
 
       <span class="header-content-type">{{content.contentType}}</span>

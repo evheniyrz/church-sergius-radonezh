@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContentEditorComponent } from './components/content-editor/content-editor.component';
 import { ContentListComponent } from './components/content-list/content-list.component';
-import { TimetablesEditorComponent } from '../shared/timetables-editor/timetables-editor.component';
 import { AdministrationComponent } from './page/administration.component';
 import { ContentResolver } from './services/content/content.resolver';
 

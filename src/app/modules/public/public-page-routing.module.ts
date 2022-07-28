@@ -11,10 +11,14 @@ const routes: Routes = [
         path: '',
         outlet: 'public-content',
         loadChildren: () => import('./pages/front-page/front-page.module').then(m => m.FrontPageModule)
-      }
+      },
+      {
+        path: 'publication',
+        outlet: 'public-content',
+        loadChildren: () => import('../publication/publication.module').then(m => m.PublicationModule)
+      },
     ]
   },
-  // { path: 'front-page',  },
   {
     path: '**',
     redirectTo: '',

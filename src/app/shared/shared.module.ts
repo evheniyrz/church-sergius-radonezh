@@ -15,12 +15,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TimetablesEditorComponent } from './timetables-editor/timetables-editor.component';
 import { GridListComponent } from './grid-list/grid-list.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule(
   {
     imports: [
       CommonModule,
+      RouterModule,
       ReactiveFormsModule,
       ReactiveFormsModule,
       MatButtonModule,

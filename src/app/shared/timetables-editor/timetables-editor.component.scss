@@ -4,62 +4,91 @@
   padding: 20px;
 
   .timetables-form {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 320px));
-    grid-auto-rows: auto;
+    width: 100%;
 
-    .timetable-form {
-      background-color: #ffffff;
-      padding: 10px;
-      align-self: flex-start;
+    .timetable-form-fieldset {
 
-      .date-form-field {
-        width: 100%;
-      }
-
-      .timetable-item-description {
-        width: 100%;
-
-        .timetable-times {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-
-          .timetable-time-form-field {
-            max-width: calc(100% / 2 - 12px);
-          }
-
-          .timetable-time-divider {
-            padding: 0 10px;
-          }
-        }
-
-        .timetable-description-field {
-          width: 100%;
-
-          textarea {
-            resize: none;
-          }
-        }
-      }
-
-      .timetable-card-footer {
+      .timetable-weekly-group-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background-color: rgba(128, 128, 128, 0.3);
+        background-color: #ffffff;
+        margin: 15px 0;
         padding: 10px;
 
-        .description-action-button {
-          border: 1px solid #ffffff;
+        .remove-week-button {
+          border: 1px solid #3f51b5;
           border-radius: 4px;
+        }
+      }
 
-          &:disabled {
-            border: 1px solid #808080;
+      .timetable-group {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 320px));
+        grid-auto-rows: auto;
+
+        .timetable-form {
+          background-color: #ffffff;
+          padding: 10px;
+          align-self: flex-start;
+
+          .date-form-field {
+            width: 100%;
+          }
+
+          .timetable-item-description {
+            width: 100%;
+
+            .timetable-times {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              width: 100%;
+
+              .timetable-time-form-field {
+                max-width: calc(100% / 2 - 12px);
+              }
+
+              .timetable-time-divider {
+                padding: 0 10px;
+              }
+            }
+
+            .timetable-description-field {
+              width: 100%;
+
+              textarea {
+                resize: none;
+              }
+            }
+          }
+
+          .timetable-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(128, 128, 128, 0.3);
+            padding: 10px;
+
+            .description-action-button {
+              border: 1px solid #ffffff;
+              border-radius: 4px;
+
+              &:disabled {
+                border: 1px solid #808080;
+              }
+            }
           }
         }
+      }
+    }
+
+    .timetable-form-action {
+      margin-top: 15px;
+
+      .post-timetable-button {
+        margin-right: 25px;
       }
     }
   }
