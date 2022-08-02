@@ -16,6 +16,7 @@ import { TimetablesEditorComponent } from './timetables-editor/timetables-editor
 import { GridListComponent } from './grid-list/grid-list.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 @NgModule(
@@ -74,13 +75,17 @@ import { RouterModule } from '@angular/router';
       LoginFormComponent,
       EditorComponent,
       GridListComponent,
-      TimetablesEditorComponent
+      TimetablesEditorComponent,
+      CalendarComponent
     ],
     exports: [
+      MatButtonModule,
+      MatIconModule,
       LoginFormComponent,
       EditorComponent,
       GridListComponent,
-      TimetablesEditorComponent
+      TimetablesEditorComponent,
+      CalendarComponent
     ],
     providers: [
       MatDatepickerModule

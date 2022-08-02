@@ -6,7 +6,6 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./modules/public/public-page.module').then(m => m.PublicPageModule),
-    pathMatch: 'full'
   },
   {
     path: 'administration',
@@ -31,7 +30,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabledBlocking',
-    // enableTracing: true
+    enableTracing: true
   })],
   exports: [RouterModule]
 })

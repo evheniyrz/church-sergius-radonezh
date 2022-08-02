@@ -5,8 +5,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { PublicPageRoutingModule } from './public-page-routing.module';
 import { PublicPageComponent } from './public-page.component';
 import { PublicPageHeaderComponent } from './components/public-page-header/public-page-header.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -18,8 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     PublicPageRoutingModule,
     MatSidenavModule,
-    MatButtonModule,
-    MatIconModule
+    SharedModule
   ]
 })
 export class PublicPageModule { }

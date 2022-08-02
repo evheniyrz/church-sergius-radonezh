@@ -4,18 +4,17 @@ import { PublicPageComponent } from './public-page.component';
 
 const routes: Routes = [
   {
-    path: '', component: PublicPageComponent,
-    pathMatch: 'full',
+    path: '',
+    component: PublicPageComponent,
     children: [
       {
         path: '',
-        outlet: 'public-content',
-        loadChildren: () => import('./pages/front-page/front-page.module').then(m => m.FrontPageModule)
+        loadChildren: () => import('./pages/front-page/front-page.module').then(m => m.FrontPageModule),
+        pathMatch: 'full'
       },
       {
         path: 'publication',
-        outlet: 'public-content',
-        loadChildren: () => import('../publication/publication.module').then(m => m.PublicationModule)
+        loadChildren: () => import('./pages/public-resource/public-resource.module').then(m => m.PublicResourceModule),
       },
     ]
   },

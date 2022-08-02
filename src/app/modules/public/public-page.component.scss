@@ -11,34 +11,49 @@
     mat-drawer {
       background-color: #006400;
 
+      .nav-side-calendar {
+        position: sticky;
+        top: 0;
+        padding: 15px;
+      }
+
       .navigation-list {
         margin: 0;
         list-style: none;
         max-width: 240px;
-        padding: 0 0 0 15px;
+        padding: 0;
 
         .navigation-item {
 
           .navigation-item-link {
             display: block;
-            padding: 10px;
+            padding: 10px 10px 10px 20px;
             text-transform: capitalize;
             text-decoration: none;
             font-weight: bold;
             letter-spacing: 1px;
             color: #ffffff;
+
+              &.active-route {
+                background: rgba(255, 255, 255, .3);
+                text-shadow: 1px 0px black;
+              }
+            }
           }
         }
       }
     }
 
-    .app-public-content {
-      background-image: url('/assets/backgrounds/wheat.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: top center;
-      background-attachment: fixed;
-      padding: 0 15px;
-    }
+  .app-public-content {
+    background-image: url('/assets/backgrounds/wheat.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    background-attachment: fixed;
+    padding: 0 15px;
   }
 }
+
+// ::ng-deep .app-sidenav mat-drawer .mat-drawer-inner-container {
+//   // padding: 10px;
+// }

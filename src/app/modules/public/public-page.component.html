@@ -1,30 +1,52 @@
 <app-public-page-header (onTriggerChange)="sideNav.toggle()" [isMenuOpened]="sidenavOpenedChange"></app-public-page-header>
 <mat-drawer-container hasBackdrop="true" class="app-sidenav">
   <mat-drawer #sideNav="matDrawer" (openedChange)="sidenavOpenedChange = $event" mode="over">
+    <app-calendar class="nav-side-calendar"></app-calendar>
     <ul class="navigation-list">
       <li class="navigation-item">
-        <a [routerLink]="['publication', 'articles']" class="navigation-item-link">
+        <a
+          [routerLink]="['publication', 'articles']"
+          [routerLinkActive]="'active-route'"
+          class="navigation-item-link">
           статьи
         </a>
       </li>
       <li class="navigation-item">
-        <a [routerLink]="['publication', 'timetables']" class="navigation-item-link">
+        <a
+          [routerLink]="['publication', 'timetables']"
+          [routerLinkActive]="'active-route'"
+          class="navigation-item-link">
           рассписание служб
         </a>
       </li>
       <li class="navigation-item">
-        <a [routerLink]="['publication', 'preachings']" class="navigation-item-link">
+        <a
+          [routerLink]="['publication', 'preachings']"
+          [routerLinkActive]="'active-route'"
+          class="navigation-item-link">
           проповеди
         </a>
       </li>
       <li class="navigation-item">
-        <a [routerLink]="['publication', 'sayings']" class="navigation-item-link">
+        <a
+          [routerLink]="['publication', 'sayings']"
+          [routerLinkActive]="'active-route'"
+          class="navigation-item-link">
           слово дня
+        </a>
+      </li>
+      <li class="navigation-item">
+        <a
+          [routerLink]="['/']"
+          [routerLinkActive]="'active-route'"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="navigation-item-link">
+          главная
         </a>
       </li>
     </ul>
   </mat-drawer>
   <mat-drawer-content class="app-public-content">
-    <router-outlet name="public-content"></router-outlet>
+    <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>
