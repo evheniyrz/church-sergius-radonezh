@@ -8,13 +8,13 @@ import { ContentResolver } from './services/content/content.resolver';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
-  },
-  {
-    path: 'dashboard',
     component: AdministrationComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'articles',
+        pathMatch: 'full'
+      },
       {
         path: ':sectionId',
         component: ContentListComponent,
@@ -29,11 +29,6 @@ const routes: Routes = [
       {
         path: ':sectionId/add-new',
         component: ContentEditorComponent
-      },
-      {
-        path: '',
-        redirectTo: 'articles',
-        pathMatch: 'full'
       }
     ]
   },

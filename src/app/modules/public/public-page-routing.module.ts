@@ -9,8 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./pages/front-page/front-page.module').then(m => m.FrontPageModule),
-        pathMatch: 'full'
+        loadChildren: () => import('./pages/front-page/front-page.module').then(m => m.FrontPageModule)
       },
       {
         path: 'publication',

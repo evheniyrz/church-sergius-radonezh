@@ -11,7 +11,7 @@ export class RedirectEffect {
   onLoginAdminSuccessRedirect$ = createEffect(() => this.actions$.pipe(
     ofType(AdminLoginActionTypes.ADMIN_ACCESS_ALLOWED),
     tap((action) => {
-      this.router.navigate(['administration', 'dashboard']);
+      this.router.navigate(['administration']);
     })
   ),
     { dispatch: false }
