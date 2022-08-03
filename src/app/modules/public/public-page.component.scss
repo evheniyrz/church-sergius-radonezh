@@ -56,10 +56,15 @@
             }
 
           .active-link-pointer {
+            display: none;
             position: absolute;
             padding-right: 15px;
             right: 0;
             top: calc(50% - 12px);
+          }
+
+          .navigation-item-link.active-route + .active-link-pointer {
+            display: block;
           }
         }
       }

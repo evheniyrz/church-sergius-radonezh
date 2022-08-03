@@ -11,62 +11,57 @@
     <ul class="navigation-list">
       <li class="navigation-item">
         <a
-          #linkActiveMain="routerLinkActive"
           [routerLink]="['/']"
           [routerLinkActive]="'active-route'"
           [routerLinkActiveOptions]="{ exact: true }"
           class="navigation-item-link">
           главная
         </a>
-        <div *ngIf="linkActiveMain.isActive" class="active-link-pointer">
+        <div class="active-link-pointer">
           <img src="assets/ornaments/golden_pointer.png" height="25" alt="">
         </div>
       </li>
       <li class="navigation-item">
         <a
-          #linkActiveArt="routerLinkActive"
           [routerLink]="['publication', 'articles']"
           [routerLinkActive]="'active-route'"
           class="navigation-item-link">
           статьи
         </a>
-        <div *ngIf="linkActiveArt.isActive" class="active-link-pointer">
+        <div class="active-link-pointer">
           <img src="assets/ornaments/golden_pointer.png" height="25" alt="">
         </div>
       </li>
       <li class="navigation-item">
         <a
-          #linkActiveTmt="routerLinkActive"
           [routerLink]="['publication', 'timetables']"
           [routerLinkActive]="'active-route'"
           class="navigation-item-link">
           рассписание служб
         </a>
-        <div *ngIf="linkActiveTmt.isActive" class="active-link-pointer">
+        <div class="active-link-pointer">
           <img src="assets/ornaments/golden_pointer.png" height="25" alt="">
         </div>
       </li>
       <li class="navigation-item">
         <a
-          #linkActivePrc="routerLinkActive"
           [routerLink]="['publication', 'preachings']"
           [routerLinkActive]="'active-route'"
           class="navigation-item-link">
           проповеди
         </a>
-        <div *ngIf="linkActivePrc.isActive" class="active-link-pointer">
+        <div class="active-link-pointer">
           <img src="assets/ornaments/golden_pointer.png" height="25" alt="">
         </div>
       </li>
       <li class="navigation-item">
         <a
-          #linkActiveSa="routerLinkActive"
           [routerLink]="['publication', 'sayings']"
           [routerLinkActive]="'active-route'"
           class="navigation-item-link">
           слово дня
         </a>
-        <div *ngIf="linkActiveSa.isActive" class="active-link-pointer">
+        <div class="active-link-pointer">
           <img src="assets/ornaments/golden_pointer.png" height="25" alt="">
         </div>
       </li>
