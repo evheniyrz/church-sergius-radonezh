@@ -6,3 +6,28 @@
     min-height: 320px;
   }
 }
+
+::ng-deep .app-calendar .mat-calendar-header {
+  color: #f0f8ff;
+
+  svg.mat-calendar-arrow {
+    fill: #f0f8ff;
+  }
+}
+
+::ng-deep .app-calendar .mat-calendar-table-header,
+::ng-deep .app-calendar .mat-calendar-body-label {
+    color: #f0f8ff;
+}
+
+::ng-deep .app-calendar .mat-calendar-body-cell-content {
+  border-radius: 50%;
+  color: #f0f8ff;
+  &.mat-calendar-body-selected {
+    background-color: rgba(255, 255, 255, .3);
+  }
+}
+
+::ng-deep .app-calendar .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color: rgba(221, 221, 221, 0.3);
+}

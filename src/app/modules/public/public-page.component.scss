@@ -11,9 +11,23 @@
     mat-drawer {
       background-color: #006400;
 
+      .nav-divider {
+        width: 100%;
+        background-color: #006400;
+
+        &:first-child {
+          position: sticky;
+          top: 0;
+          z-index: 1;
+        }
+
+        img {
+          display: block;
+          max-width: 100%;
+        }
+      }
+
       .nav-side-calendar {
-        position: sticky;
-        top: 0;
         padding: 15px;
       }
 
@@ -21,7 +35,7 @@
         margin: 0;
         list-style: none;
         max-width: 240px;
-        padding: 0;
+        padding: 20px 0;
 
         .navigation-item {
 

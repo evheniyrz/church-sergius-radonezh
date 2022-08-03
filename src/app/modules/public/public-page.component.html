@@ -1,8 +1,23 @@
 <app-public-page-header (onTriggerChange)="sideNav.toggle()" [isMenuOpened]="sidenavOpenedChange"></app-public-page-header>
 <mat-drawer-container hasBackdrop="true" class="app-sidenav">
   <mat-drawer #sideNav="matDrawer" (openedChange)="sidenavOpenedChange = $event" mode="over">
+    <div class="nav-divider">
+      <img src="/assets/ornaments/thin-divider.png" height="30" alt="">
+    </div>
     <app-calendar class="nav-side-calendar"></app-calendar>
+    <div class="nav-divider">
+      <img src="/assets/ornaments/thin-divider.png" height="30" alt="">
+    </div>
     <ul class="navigation-list">
+      <li class="navigation-item">
+        <a
+          [routerLink]="['/']"
+          [routerLinkActive]="'active-route'"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="navigation-item-link">
+          главная
+        </a>
+      </li>
       <li class="navigation-item">
         <a
           [routerLink]="['publication', 'articles']"
@@ -33,15 +48,6 @@
           [routerLinkActive]="'active-route'"
           class="navigation-item-link">
           слово дня
-        </a>
-      </li>
-      <li class="navigation-item">
-        <a
-          [routerLink]="['/']"
-          [routerLinkActive]="'active-route'"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="navigation-item-link">
-          главная
         </a>
       </li>
     </ul>
