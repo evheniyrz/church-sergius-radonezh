@@ -43,12 +43,17 @@ export class CalendarViewerComponent implements OnInit {
   }
 
   private bufferToHtml(calendarData: Calendar | null | undefined): string {
-    let convertedData = '<p>Error during data conversion</p>';
+    let convertedData: string = '<p>Error during data conversion</p>';
     try {
-      const buffer: number[] = calendarData?.content[0].data as number[];
       let win1251decoder = new TextDecoder('windows-1251');
-      let bytes = new Uint8Array(buffer);
-      convertedData = win1251decoder.decode(bytes);
+
+      convertedData = calendarData?.content.reduce((prev, next) => {
+        const buffer: number[] = next.data as number[];
+        let bytes = new Uint8Array(buffer);
+        prev = prev.concat(win1251decoder.decode(bytes));
+        return prev;
+      }, '') as string;
+
     } catch (error) {
       console.log('***Conversion calendar data error***', error);
     }

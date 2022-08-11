@@ -1,7 +1,11 @@
+<h2 class="calendar-component-header">православный календарь</h2>
+<div class="calendar-divider top-divider"></div>
+
 <ng-container *ngIf="calendarContent$ | async; let html;">
   <div class="calendar-wrapper">
     <div class="parchment"></div>
     <div class="calendar-content" [innerHtml]="html"></div>
+    <div class="calendar-divider"></div>
   </div>
   <svg>
     <filter id="wavy2">
