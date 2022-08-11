@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FrontPageRoutingModule } from './front-page-routing.module';
 import { FrontPageComponent } from './front-page.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { FrontPageComponent } from './front-page.component';
   ],
   imports: [
     CommonModule,
-    FrontPageRoutingModule
+    FrontPageRoutingModule,
+    SharedModule
   ]
 })
 export class FrontPageModule { }

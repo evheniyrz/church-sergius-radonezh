@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { selectRouteNestedParams, selectRouteParam, selectRouteParams } from '../root.selectors';
-import { contentEntityAdapter } from './content.reducers';
+import { calendarEntityAdapter, contentEntityAdapter } from './content.reducers';
 import { ContentState, ContentStoreState } from './content.state';
 
-// export const articlesFeatureSelector = createFeatureSelector<ContentState>('articles');
+export const calendarFeatureSelector = createFeatureSelector<ContentState>('calendar');
 // export const timetableFeatureSelector = createFeatureSelector<ContentState>('timetable');
 // export const preachesFeatureSelector = createFeatureSelector<ContentState>('preaches');
 // export const sayingsFeatureSelector = createFeatureSelector<ContentState>('sayings');
@@ -17,8 +17,14 @@ const {
   selectTotal
 } = contentEntityAdapter.getSelectors();
 
+const calendarSelectors = calendarEntityAdapter.getSelectors();
+
 export const selectContentEntities = createSelector(contentRootFeatureSelector, selectRouteParams, (state, { sectionId }) => {
   return selectEntities(state[sectionId]);
+});
+
+export const selectCalendarEntities = createSelector(contentRootFeatureSelector, selectRouteParams, (state, { sectionId }) => {
+  return calendarSelectors.selectEntities(state['calendar']);
 })
 
 // export const selectArticleEntities = createSelector(articlesFeatureSelector, selectEntities);
@@ -40,6 +46,14 @@ export const selectContentItem = createSelector(selectContentEntities, selectRou
 
   return null != content[contentId] ? content[contentId] : null;
 });
+
+export const selectCalendarItem = createSelector(
+  selectCalendarEntities,
+  selectRouteNestedParams,
+  (calendarEntities, { date }) => {
+    const calendarDate = null != date ? new Date(date).toDateString() : new Date().toDateString();
+    return null != calendarEntities[calendarDate] ? calendarEntities[calendarDate] : null;
+  });
 
 // export const selectArticle = createSelector(selectArticleEntities, selectRouteNestedParams, (articles, { contentId }) => articles[contentId]);
 // export const selectTimetable = createSelector(selectTimetableEntities, selectRouteNestedParams, (timetables, { contentId }) => timetables[contentId]);

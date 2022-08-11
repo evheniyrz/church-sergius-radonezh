@@ -22,7 +22,7 @@ export class ContentListComponent implements OnInit {
     map(content => {
 
       let contentList: ContentList[] | undefined = [] as ContentList[];
-      console.log('%c POST CONTENT RESPONSE EFFF', 'color: green;font-weight:bold', { content, loc: this.locale });
+
       contentList = content?.map(element => {
 
         let headingElement;

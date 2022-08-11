@@ -1,7 +1,10 @@
 import { EntityState } from '@ngrx/entity';
-import { Content } from './model/content.model';
+import { Calendar, Content } from './model/content.model';
 
 export interface ContentState extends EntityState<Content> {
+}
+
+export interface CalendarState extends EntityState<Calendar> {
 }
 
 interface StateModel {
@@ -12,4 +15,5 @@ export interface ContentStoreState extends StateModel {
   timetables: ContentState;
   preachings: ContentState;
   sayings: ContentState;
+  calendar: CalendarState;
 }

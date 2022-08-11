@@ -24,7 +24,7 @@ const postContent = (req: Request, resp: Response) => {
   baseContentSchema.set('collection', sectionId as string);
   mongoose.model(sectionId as string, baseContentSchema).create(content)
     .then(dbResponse => {
-      console.log('POST CNT CNTRL', { dbResponse });
+
       if (!Array.isArray(dbResponse)) {
         dbResponse.id = dbResponse._id.toString();
       } else {
@@ -43,7 +43,6 @@ const updateContent = (req: Request, resp: Response) => {
   baseContentSchema.set('collection', sectionId as string);
   mongoose.model(sectionId as string, baseContentSchema).findOneAndUpdate({ _id: id }, content, { new: true })
     .then(dbResponse => {
-      console.log('POST CNT CNTRL', { dbResponse });
       dbResponse.id = dbResponse._id.toString();
 
       resp.status(200).send(dbResponse);
@@ -56,7 +55,6 @@ const deleteContent = (req: Request, resp: Response) => {
   baseContentSchema.set('collection', sectionId as string);
   mongoose.model(sectionId as string, baseContentSchema).deleteOne({ _id: contentId })
     .then(dbResponse => {
-      console.log('POST CNT CNTRL', { dbResponse });
 
       resp.status(200).send(dbResponse);
     });

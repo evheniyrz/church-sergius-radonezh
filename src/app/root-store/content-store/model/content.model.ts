@@ -1,5 +1,3 @@
-import { Data } from '@angular/router';
-
 export type ContentType = 'articles' | 'timetables' | 'preachings' | 'sayings';
 
 export interface EditorContent {
@@ -52,6 +50,14 @@ export interface Content {
   };
   editor?: string;
   updatedAt?: number;
+}
+
+export interface Calendar {
+  date: string | number | Date;
+  content: {
+    type: 'Buffer',
+    data: number[];
+  }[]
 }
 
 export interface AdminPageContent {

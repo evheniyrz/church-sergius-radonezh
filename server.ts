@@ -11,6 +11,7 @@ import * as bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import { userRouter } from './db-routes/user-routes';
 import { contentRouter } from 'db-routes/content-routes';
+import { corsRouter } from 'cors-route/cors-route';
 
 require('dotenv').config();
 
@@ -22,7 +23,8 @@ export function app(): express.Express {
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
     .use(userRouter)
-    .use(contentRouter);
+    .use(contentRouter)
+    .use(corsRouter);
   const distFolder = join(process.cwd(), 'dist/nik-prav/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 

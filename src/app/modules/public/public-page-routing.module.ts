@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PublicPageComponent } from './public-page.component';
+import { CalendarDataResolver } from './pages/calendar/calendar-data-resolver/calendar-data.resolver';
 
 const routes: Routes = [
   {
@@ -14,6 +15,13 @@ const routes: Routes = [
       {
         path: 'publication',
         loadChildren: () => import('./pages/public-resource/public-resource.module').then(m => m.PublicResourceModule),
+      },
+      {
+        path: 'calendar',
+        loadChildren: () => import('./pages/calendar/calendar.module').then(m => m.CalendarModule),
+        resolve: {
+          calendar: CalendarDataResolver
+        }
       },
     ]
   },

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Content } from './model/content.model';
+import { Calendar, Content } from './model/content.model';
 
 // export const loadArticles = createAction('[CONTENT] Load articles', props<{ sectionId: string }>());
 // export const loadTimetables = createAction('[CONTENT] Load timetables', props<{ sectionId: string }>());
@@ -9,6 +9,11 @@ import { Content } from './model/content.model';
 export const contentErrorAction = createAction('[CONTENT ERROR] Load content error', props<{ message: string }>());
 
 export const loadSectionContent = createAction('[CONTENT] Load section content', props<{ sectionId: string }>());
+
+export const loadCalendar = createAction('[CONTENT] Load calendar', props<{ date: Date | string | number }>());
+export const loadFrontPageCalendar = createAction('[CONTENT] Load Frontpage calendar', props<{ date: Date | string | number }>());
+export const setCalendar = createAction('[CONTENT] Set calendar', props<{ calendar: Calendar }>());
+export const getCalendar = createAction('[CONTENT] Get calendar', props<{ date: Date | string | number }>());
 
 export const setArticles = createAction('[CONTENT] Set articles', props<{ articles: Content[] }>());
 export const setTimetables = createAction('[CONTENT] Set timetables', props<{ timetables: Content[] }>());

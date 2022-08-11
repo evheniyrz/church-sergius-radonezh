@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Content, ContentType } from 'src/app/root-store/content-store/model/content.model';
+import { Content } from 'src/app/root-store/content-store/model/content.model';
 
 @Injectable()
 export class ContentService {
@@ -9,10 +9,12 @@ export class ContentService {
   constructor(private httpClient: HttpClient) { }
 
   public postContent(payload: Content | Content[], sectionId: string): Observable<any> {
+
     return this.httpClient.post('post-content', payload, { params: { sectionId } });
   }
 
   public updateContent(content: Content, id: string, sectionId: string): Observable<any> {
+
     return this.httpClient.patch('update-content', content, { params: { id, sectionId } });
   }
 
@@ -23,23 +25,28 @@ export class ContentService {
   }
 
   public deleteContent(contentId: string, sectionId: string): Observable<any> {
+
     return this.httpClient.delete('delete-content', { params: { contentId, sectionId } });
   }
 
   public getArticle(id: string): Observable<any> {
+
     const path: string = `article/${id}`;
     return this.httpClient.get(path);
   }
 
   public getTimetables(): Observable<any> {
+
     return this.httpClient.get('timetables');
   }
 
   public getPreachings(): Observable<any> {
+
     return this.httpClient.get('preachings');
   }
 
   public getSayings(): Observable<any> {
+
     return this.httpClient.get('sayings');
   }
 }

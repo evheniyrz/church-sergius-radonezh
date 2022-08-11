@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { exhaustMap, map } from 'rxjs';
+import { exhaustMap, map, tap } from 'rxjs';
+import { CalendarApiResponse } from 'src/app/api/services/calendar-api/model/calendar-api-response.model';
+import { CalendarService } from 'src/app/api/services/calendar/calendar.service';
 import { ContentService } from 'src/app/api/services/content/content.service';
-import { contentErrorAction, deleteArticle, deleteContent, deletePreaching, deleteSaying, deleteTimetable, loadSectionContent, postArticle, postContentAction, postPreaching, postSaying, postTimetables, setArticles, setPreachings, setSayings, setSectionContent, setTimetables, updateArticle, updateContent, updatePreaching, updateSaying, updateTimetable } from './content.actions';
-import { Content } from './model/content.model';
+import { contentErrorAction, deleteArticle, deleteContent, deletePreaching, deleteSaying, deleteTimetable, loadCalendar, loadFrontPageCalendar, loadSectionContent, postArticle, postContentAction, postPreaching, postSaying, postTimetables, setArticles, setCalendar, setPreachings, setSayings, setSectionContent, setTimetables, updateArticle, updateContent, updatePreaching, updateSaying, updateTimetable } from './content.actions';
+import { Calendar, Content } from './model/content.model';
 
 @Injectable()
 export class ContentEffect {
-  constructor(private actions$: Actions, private contentService: ContentService) { }
+  constructor(
+    private actions$: Actions,
+    private router: Router,
+    private contentService: ContentService,
+    private calendarService: CalendarService
+  ) { }
 
   loadSectionContent$ = createEffect(() => this.actions$.pipe(
     ofType(loadSectionContent.type),
@@ -119,6 +127,28 @@ export class ContentEffect {
 
             default:
               return contentErrorAction({ message: `Unrecognized section ID => ${action.sectionId}` });
+          }
+        })
+      )
+    })
+  ));
+
+  loadCalendar$ = createEffect(() => this.actions$.pipe(
+    ofType(...[loadFrontPageCalendar.type, loadCalendar.type]),
+    exhaustMap((action: Action) => {
+      const currentAction = action as Action & { date: Date | string | number; };
+      let calendar: Calendar;
+      return this.calendarService.getCalendarData(currentAction.date).pipe(
+        map((apiResponse: CalendarApiResponse) => {
+          calendar = {
+            date: new Date(currentAction.date).toDateString(),
+            content: apiResponse.body
+          };
+          return setCalendar({ calendar });
+        }),
+        tap(() => {
+          if (action.type === loadCalendar.type) {
+            this.router.navigate(['calendar', `${calendar.date}`]);
           }
         })
       )

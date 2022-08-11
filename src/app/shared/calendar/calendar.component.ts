@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { CalendarService } from './services/calendar/calendar.service';
+import { Store } from '@ngrx/store';
+import { loadCalendar } from 'src/app/root-store/content-store/content.actions';
 
 @Component({
   selector: 'app-calendar',
@@ -10,9 +10,10 @@ import { CalendarService } from './services/calendar/calendar.service';
 export class CalendarComponent implements OnInit {
 
   /** also to highlight selected/current date in the calendar */
-  public selectedDate: Date | null | undefined = new Date();
+  public selectedDate!: Date | string | number;
 
-  constructor(private calendarService: CalendarService) { }
+  constructor(
+    private store: Store) { }
 
   ngOnInit(): void {
   }
@@ -22,18 +23,7 @@ export class CalendarComponent implements OnInit {
    */
   public dateChange(val: any) {
     this.selectedDate = val;
-    this.calendarService.getCalendarData(val).pipe(
-      tap((response) => console.log('%c CALENDAR RESPONSE', 'color: green;font-weight: bold;', response))
-    ).subscribe(
-      {
-
-        complete: () => {
-          console.log('COMPLETE');
-        }
-      }
-    );
-
-    console.log('DATE NOW CHANGE', this.selectedDate);
+    this.store.dispatch(loadCalendar({ date: this.selectedDate }));
   }
 
 }

@@ -30,7 +30,6 @@ export class TimetablesEditorComponent implements OnInit {
 
   @Input() contentConfig?: { userData: UserLoginState | null | undefined; sectionId: string; }
   @Input() set contentToEdit(editorContent: Content | null | undefined) {
-    console.log('%c CONTENT TO EDIT', 'color: coral', editorContent);
     if (null != editorContent) {
       this.timeTablesForm.removeControl('weeklyTimetable');
       this.timeTablesForm = this.frmBuilder.group({ weeklyTimetable: this.frmBuilder.array([this.generateWeeklyTimetable(editorContent.content.editorContent.content as TimetableContent)]) });
@@ -80,7 +79,7 @@ export class TimetablesEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('NEW FORM', this.timeTablesForm);
+
   }
 
   /**
