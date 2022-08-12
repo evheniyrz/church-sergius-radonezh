@@ -92,3 +92,17 @@
     }
   }
 }
+
+:host(.current-date) {
+  ::ng-deep .ptroparionheader {
+    display: none;
+  }
+
+  ::ng-deep .ptroparionheader + .normaltext {
+    display: none;
+  }
+
+  ::ng-deep .troparionheader {
+    display: none;
+  }
+}
