@@ -54,6 +54,15 @@ export class CalendarViewerComponent implements OnInit {
         return prev;
       }, '') as string;
 
+      const document: Document = new DOMParser().parseFromString(convertedData, 'text/html');
+
+      document.querySelectorAll('.main').forEach((resourceLink: Element) => {
+        (resourceLink as HTMLAnchorElement).onclick = null;
+        (resourceLink as HTMLAnchorElement).target = '_blank';
+      });
+
+      convertedData = document.body.innerHTML;
+
     } catch (error) {
       console.log('***Conversion calendar data error***', error);
     }
