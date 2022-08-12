@@ -33,6 +33,30 @@
     margin: 0 auto;
     border: 1px solid transparent;
 
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      aspect-ratio: 1/1;
+      width: 15vw;
+      z-index: 1;
+    }
+
+    &::before {
+      background-image: url('/assets/ornaments/corner_left.png');
+      top: 10px;
+      left: 10px;
+    }
+
+    &::after {
+      background-image: url('/assets/ornaments/corner_right.png');
+      top: 10px;
+      right: 10px;
+    }
+
     .parchment {
       position: absolute;
       top: 0;
