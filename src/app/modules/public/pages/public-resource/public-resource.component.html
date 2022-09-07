@@ -1,4 +1,4 @@
-<p *ngIf="contentId$ | async; let params;">
+<p *ngIf="contentList$ | async; let contentList;">
 
-  {{params | json}}
+  {{contentList | json}}
 </p>

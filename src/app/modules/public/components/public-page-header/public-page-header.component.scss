@@ -2,7 +2,8 @@
   display: block;
   height: 70px;
   line-height: 70px;
-  background-color: #006400;
+  background-color: rgba($color: #ffffff, $alpha: 0.1);
+  backdrop-filter: blur(5px);
   background-image: url('/assets/ornaments/ttl.png');
   background-size: 80%;
   background-repeat: no-repeat;

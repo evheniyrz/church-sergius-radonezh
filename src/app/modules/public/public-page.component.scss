@@ -7,13 +7,15 @@
 
   .app-sidenav {
     flex: 1 0;
+    background-color: transparent;
 
     mat-drawer {
-      background-color: #006400;
+      background-color: rgba($color: #ffffff, $alpha: 0.1);
+      backdrop-filter: blur(5px);
 
       .nav-divider {
         width: 100%;
-        background-color: #006400;
+        background-color: transparent;
 
         &:first-child {
           position: sticky;
@@ -72,15 +74,6 @@
   }
 
   .app-public-content {
-    background-image: url('/assets/backgrounds/wheat.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
-    background-attachment: fixed;
     padding: 0 15px;
   }
 }
-
-// ::ng-deep .app-sidenav mat-drawer .mat-drawer-inner-container {
-//   // padding: 10px;
-// }
