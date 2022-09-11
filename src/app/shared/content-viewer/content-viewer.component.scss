@@ -1,5 +1,42 @@
 :host {
   display: block;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    aspect-ratio: 1/1;
+    width: 15vw;
+    z-index: 1;
+  }
+
+  &::before {
+    background-image: url('/assets/ornaments/corner_left.png');
+    top: 10px;
+    left: 10px;
+  }
+
+  &::after {
+    background-image: url('/assets/ornaments/corner_right.png');
+    top: 10px;
+    right: 10px;
+  }
+
+  .papyrus-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 2px 3px 20px rgb(0 0 0 / 4%), 0 0 125px #8f5922 inset;
+    background: #fffef0;
+    filter: url('/assets/backgrounds/papyrus-filter.svg#wavy2');
+    z-index: -1;
+  }
 
   ::ng-deep .topic-container {
     padding: 30px 20px;
@@ -9,7 +46,7 @@
     }
 
     p {
-      color: crimson;
+      color: #540614;
       img {
         width: 100%;
         max-width: 320px;
