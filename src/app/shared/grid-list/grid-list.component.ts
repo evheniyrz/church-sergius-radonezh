@@ -21,6 +21,7 @@ export interface ContentList {
 export class GridListComponent implements OnInit {
 
   @Input() contentList!: ContentList[];
+  @Input() isAdmin = false;
 
   constructor(private store: Store) { }
 

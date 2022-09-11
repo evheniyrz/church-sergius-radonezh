@@ -3,7 +3,7 @@
 
   mat-calendar {
     min-width: 250px;
-    min-height: 320px;
+    min-height: 340px;
   }
 }
 
@@ -30,4 +30,9 @@
 
 ::ng-deep .app-calendar .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
     background-color: rgba(221, 221, 221, 0.3);
+}
+
+::ng-deep .app-calendar .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    border-color: rgba(255, 255, 255, 0.38);
+    border-width: 2px;
 }

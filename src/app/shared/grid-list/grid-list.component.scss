@@ -8,14 +8,19 @@
 
     .content-card {
       background-color: #eeeeee;
-      box-shadow: 1px 0px 7px 0px #777;
-      border-radius: 5px;
+      box-shadow: 5px 5px 5px 0px #3232328f;
+      border-radius: 10px;
       overflow: hidden;
+
+      &.public {
+        background-color: rgba($color: #ffffff, $alpha: 0.2);
+        backdrop-filter: blur(5px);
+      }
 
       .card-header {
         display: flex;
         align-items: center;
-        background-color: rgba(128, 128, 128, 0.3);
+        min-height: 40px;
         padding: 5px;
 
         .tile-header-button {

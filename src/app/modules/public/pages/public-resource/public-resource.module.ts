@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PublicResourceRoutingModule } from './public-resource-routing.module';
 import { PublicResourceComponent } from './public-resource.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { PublicResourceComponent } from './public-resource.component';
   ],
   imports: [
     CommonModule,
-    PublicResourceRoutingModule
+    PublicResourceRoutingModule,
+    SharedModule
   ]
 })
 export class PublicResourceModule { }

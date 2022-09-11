@@ -1,4 +1,4 @@
-<p *ngIf="contentList$ | async; let contentList;">
-
-  {{contentList | json}}
-</p>
+<div class="content-list-container">
+  <ng-container *ngIf="contentList$ | async; let contentItem;">
+  </ng-container>
+</div>

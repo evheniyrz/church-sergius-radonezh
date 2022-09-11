@@ -1,28 +1,32 @@
 <div class="grid-content-container">
-  <div *ngFor="let content of contentList;" class="content-card">
+  <div *ngFor="let content of contentList;" [class.public]="!isAdmin" class="content-card">
     <div class="card-header">
-      <a [routerLink]="[content.contentId]" mat-icon-button class="tile-header-button">
-        <mat-icon matTooltip="edit/редактировать">edit</mat-icon>
-      </a>
-      <button mat-icon-button class="tile-header-button">
-        <mat-icon matTooltip="view/просмотреть">visibility</mat-icon>
-      </button>
-      <button mat-icon-button color="accent" (click)="deleteContent(content.contentId, content.contentType)" class="tile-header-button">
-        <mat-icon matTooltip="delete/удалить">delete_outline</mat-icon>
-      </button>
+      <ng-container *ngIf="isAdmin">
+        <a [routerLink]="[content.contentId]" mat-icon-button class="tile-header-button">
+          <mat-icon matTooltip="edit/редактировать">edit</mat-icon>
+        </a>
+        <a [routerLink]="['view', content.contentId]" mat-icon-button class="tile-header-button">
+          <mat-icon matTooltip="view/просмотреть">visibility</mat-icon>
+        </a>
+        <button mat-icon-button color="accent" (click)="deleteContent(content.contentId, content.contentType)" class="tile-header-button">
+          <mat-icon matTooltip="delete/удалить">delete_outline</mat-icon>
+        </button>
 
-      <span class="header-content-type">{{content.contentType}}</span>
+        <span class="header-content-type">{{content.contentType}}</span>
+      </ng-container>
     </div>
     <div class="content-image">
       <img *ngIf="content.imgSrc" [src]="content.imgSrc" alt="" class="item-image">
     </div>
     <div class="content-description">
-      <h3 class="title">{{content.title}}</h3>
+      <h3 class="title">
+        <a [routerLink]="['view', content.contentId]">{{content.title}}</a>
+      </h3>
       <p class="content-create">
         <span class="author"><small><strong>author: </strong></small>{{content.author}}</span>
         <span class="created-at"><small><strong>createdAt: </strong></small>{{content.date | date}}</span>
       </p>
-      <div *ngIf="content.edit" class="edit">
+      <div *ngIf="content.edit && isAdmin" class="edit">
         <span class="editor"><small><strong>editor: </strong></small>{{content.author}}</span>
         <span class="edited-at"><small><strong>editedAt: </strong></small>{{content.author}}</span>
       </div>

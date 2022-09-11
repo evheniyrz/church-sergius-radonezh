@@ -1,0 +1,21 @@
+:host {
+  display: block;
+
+  ::ng-deep .topic-container {
+    padding: 30px 20px;
+
+    h1 {
+      text-align: center;
+    }
+
+    p {
+      color: crimson;
+      img {
+        width: 100%;
+        max-width: 320px;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+}

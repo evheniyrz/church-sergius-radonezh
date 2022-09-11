@@ -10,7 +10,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev:ssr": "ng run nik-prav:serve-ssr",
+    "dev:ssr": "ng run nik-prav:serve-ssr --open",
     "serve:ssr": "node dist/nik-prav/server/main.js",
     "build:ssr": "ng build && ng run nik-prav:server",
     "prerender": "ng run nik-prav:prerender",

@@ -1,0 +1,26 @@
+<section *ngIf="contentList$ | async; let contentList; else warningTemplate;" class="content-list">
+  <ng-container [ngSwitch]="contentList.length > 0">
+    <ng-container *ngIf="contentSection$ | async; let sectionParams">
+      <div *ngSwitchCase="true" class="content-list__add-new">
+          <a *ngIf="sectionParams['isAdmin']" [routerLink]="['add-new']">Add new {{sectionParams['sectionId']}}</a>
+          <app-grid-list [contentList]="contentList" [isAdmin]="sectionParams['isAdmin']"></app-grid-list>
+
+      </div>
+      <div *ngSwitchDefault class="default-content">
+        <p>No content has been created for this section yet</p>
+        <ng-container *ngIf="sectionParams['isAdmin']">
+          <p>Use the button below to add content for the section</p>
+          <p>
+            <a [routerLink]="['add-new']">Add new {{sectionParams['sectionId']}}</a>
+          </p>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-container>
+</section>
+<ng-template #warningTemplate>
+  <div class="default-content">
+    <p *ngIf="contentSection$ | async; let sectionParams">Section named <span class="wrong-name-section">{{sectionParams['sectionId'] || undefined}}</span> does not exist in the database</p>
+    <p>Check the URL path or select the correct section from the navigation menu on the left</p>
+  </div>
+</ng-template>

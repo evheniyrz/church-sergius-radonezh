@@ -18,6 +18,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarViewerComponent } from './calendar-viewer/calendar-viewer.component';
+import { ContentListComponent } from './content-list/content-list.component';
+import { ContentViewerComponent } from './content-viewer/content-viewer.component';
+import { ContentResolver } from './services/content/content.resolver';
 
 
 @NgModule(
@@ -78,7 +81,9 @@ import { CalendarViewerComponent } from './calendar-viewer/calendar-viewer.compo
       GridListComponent,
       TimetablesEditorComponent,
       CalendarComponent,
-      CalendarViewerComponent
+      CalendarViewerComponent,
+      ContentListComponent,
+      ContentViewerComponent,
     ],
     exports: [
       MatButtonModule,
@@ -88,10 +93,13 @@ import { CalendarViewerComponent } from './calendar-viewer/calendar-viewer.compo
       GridListComponent,
       TimetablesEditorComponent,
       CalendarComponent,
-      CalendarViewerComponent
+      CalendarViewerComponent,
+      ContentListComponent,
+      ContentViewerComponent,
     ],
     providers: [
-      MatDatepickerModule
+      MatDatepickerModule,
+      ContentResolver
     ]
   }
 )

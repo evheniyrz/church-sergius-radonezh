@@ -1,0 +1,7 @@
+
+<ng-container *ngIf="pageContent$ | async; let content;">
+  <ng-container [ngSwitch]="content.type">
+    <div *ngSwitchCase="'doc'" [innerHtml]="content.content" class="topic-container"></div>
+    <div *ngSwitchDefault>timetable</div>
+  </ng-container>
+</ng-container>

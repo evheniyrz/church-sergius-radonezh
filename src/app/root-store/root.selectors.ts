@@ -3,6 +3,7 @@ import { getSelectors, RouterReducerState } from '@ngrx/router-store';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export const selectRouter = createFeatureSelector<RouterReducerState>('router');
+export const selectLoading = createFeatureSelector<boolean>('loading');
 
 export const {
   selectCurrentRoute, // select the current route
@@ -24,6 +25,7 @@ export const selectRouteNestedParams = createSelector(selectRouter, (router) => 
     params = {
       ...params,
       ...currentRoute.params,
+      ...currentRoute.data
     };
   }
 
@@ -32,3 +34,5 @@ export const selectRouteNestedParams = createSelector(selectRouter, (router) => 
 
 export const selectRouteNestedParam = (param: string) =>
   createSelector(selectRouteNestedParams, (params) => params && params[param]);
+
+export const isLoading = createSelector(selectLoading, (loadingState) => loadingState);
