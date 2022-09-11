@@ -15,7 +15,10 @@ const routes: Routes = [
   },
   {
     path: ':sectionId/view/:contentId',
-    component: ContentViewerComponent
+    component: ContentViewerComponent,
+    resolve: {
+      content: ContentResolver
+    },
   }
 ];
 

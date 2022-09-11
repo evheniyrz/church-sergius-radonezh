@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { toHTML } from 'ngx-editor';
 import { map, Observable } from 'rxjs';
@@ -15,7 +16,7 @@ export class ContentViewerComponent implements OnInit {
   public pageContent$: Observable<
     {
       type: 'doc' | 'formGroupValue';
-      content: string | { [key: string]: string; };
+      content: SafeHtml | { [key: string]: string; };
     } | null> = this.store.select(selectContentItem)
       .pipe(
         map((contentResponse: Content | null | undefined) => {
@@ -26,14 +27,14 @@ export class ContentViewerComponent implements OnInit {
             (contentResponse.content.editorContent.content as EditorContent[]).length > 0) {
             content = {
               type: contentResponse.content.editorContent.type,
-              content: toHTML(contentResponse.content.editorContent)
+              content: this.domSanitizer.bypassSecurityTrustHtml(toHTML(contentResponse.content.editorContent))
             };
           }
 
           return content;
         })
       );
-  constructor(private store: Store) { }
+  constructor(private store: Store, private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
   }
