@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { isLoading } from './root-store/root.selectors';
 
 @Component({
@@ -8,8 +8,13 @@ import { isLoading } from './root-store/root.selectors';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  public isLoading$: Observable<boolean> = this.store.select(isLoading);
+  public isLoading$!: Observable<boolean>;
   constructor(private store: Store) { }
+
+  ngOnInit(): void {
+    this.isLoading$ = this.store.select(isLoading).pipe(delay(0));
+  }
+
 }

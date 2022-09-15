@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { AdminPageGuard } from './guards/admin-page/admin-page.guard';
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ''
+    pathMatch: 'full',
+    component: ErrorPageComponent
   }
 ];
 

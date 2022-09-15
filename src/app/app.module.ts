@@ -10,11 +10,13 @@ import { RootStoreModule } from './root-store/root-store.module';
 import { LoginPageModule } from './login-page/login-page.module';
 import { ApiModule } from './api/api.module';
 import '@angular/common/locales/global/ru';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

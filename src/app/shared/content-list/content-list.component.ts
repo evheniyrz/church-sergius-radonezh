@@ -1,7 +1,7 @@
 import { Component, Inject, Input, LOCALE_ID, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { selectContentList } from 'src/app/root-store/content-store/content.selectors';
 import { EditorContent, TimetableContent } from 'src/app/root-store/content-store/model/content.model';
 import { selectRouteNestedParams } from 'src/app/root-store/root.selectors';
@@ -61,10 +61,7 @@ export class ContentListComponent implements OnInit {
       return contentList;
     })
   );
-  public contentSection$: Observable<Params> = this.store.select(selectRouteNestedParams)
-    .pipe(
-      tap(resp => console.log('PUBL RESP', resp))
-    );
+  public contentSection$: Observable<Params> = this.store.select(selectRouteNestedParams);
 
   constructor(private store: Store, private datePipe: DatePipe, @Inject(LOCALE_ID) private locale: string) { }
 

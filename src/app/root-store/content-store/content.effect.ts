@@ -6,6 +6,7 @@ import { exhaustMap, map, tap } from 'rxjs';
 import { CalendarApiResponse } from 'src/app/api/services/calendar-api/model/calendar-api-response.model';
 import { CalendarService } from 'src/app/api/services/calendar/calendar.service';
 import { ContentService } from 'src/app/api/services/content/content.service';
+import { hideLoader, showLoader } from '../root.reducers';
 import { contentErrorAction, deleteArticle, deleteContent, deletePreaching, deleteSaying, deleteTimetable, loadCalendar, loadFrontPageCalendar, loadSectionContent, postArticle, postContentAction, postPreaching, postSaying, postTimetables, setArticles, setCalendar, setPreachings, setSayings, setSectionContent, setTimetables, updateArticle, updateContent, updatePreaching, updateSaying, updateTimetable } from './content.actions';
 import { Calendar, Content } from './model/content.model';
 
@@ -26,7 +27,7 @@ export class ContentEffect {
         map(content => {
           switch (action.sectionId) {
             case 'articles':
-
+              console.log('%c SET ARTICLES', 'color:fuchsia;font-weight:bold;', { content });
               return setArticles({ [action.sectionId]: content });
 
             case 'timetables':
@@ -153,5 +154,41 @@ export class ContentEffect {
         })
       )
     })
+  ));
+
+  showLoader$ = createEffect(() => this.actions$.pipe(
+    ofType(...[
+      loadSectionContent.type,
+      loadFrontPageCalendar.type,
+      loadCalendar.type,
+      postContentAction.type,
+      updateContent.type,
+      deleteContent.type
+    ]),
+    map(() => showLoader())
+  ));
+
+  hideLoader$ = createEffect(() => this.actions$.pipe(
+    ofType(...[
+      setArticles.type,
+      setTimetables.type,
+      setPreachings.type,
+      setSayings.type,
+      contentErrorAction.type,
+      postArticle.type,
+      postTimetables.type,
+      postPreaching.type,
+      postSaying.type,
+      updateArticle.type,
+      updateTimetable.type,
+      updatePreaching.type,
+      updateSaying.type,
+      deleteArticle.type,
+      deleteTimetable.type,
+      deletePreaching.type,
+      deleteSaying.type,
+      setCalendar.type
+    ]),
+    map(() => hideLoader())
   ));
 }

@@ -25,6 +25,7 @@
         <a
           [routerLink]="['publication', 'articles']"
           [routerLinkActive]="'active-route'"
+          [routerLinkActiveOptions]="{ exact: true }"
           class="navigation-item-link">
           статьи
         </a>
@@ -36,6 +37,7 @@
         <a
           [routerLink]="['publication', 'timetables']"
           [routerLinkActive]="'active-route'"
+          [routerLinkActiveOptions]="{ exact: true }"
           class="navigation-item-link">
           рассписание служб
         </a>
@@ -47,6 +49,7 @@
         <a
           [routerLink]="['publication', 'preachings']"
           [routerLinkActive]="'active-route'"
+          [routerLinkActiveOptions]="{ exact: true }"
           class="navigation-item-link">
           проповеди
         </a>
@@ -58,6 +61,7 @@
         <a
           [routerLink]="['publication', 'sayings']"
           [routerLinkActive]="'active-route'"
+          [routerLinkActiveOptions]="{ exact: true }"
           class="navigation-item-link">
           слово дня
         </a>
