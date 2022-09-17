@@ -5,7 +5,7 @@ import { State } from './root-state';
 export const showLoader = createAction('[APP] Show loader');
 export const hideLoader = createAction('[APP] Hide loader');
 
-const loadingInitialState = true;
+const loadingInitialState = false;
 
 const loadingFeature = createFeature(
   {

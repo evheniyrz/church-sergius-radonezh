@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { toHTML } from 'ngx-editor';
-import { map, Observable } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 import { selectContentItem } from 'src/app/root-store/content-store/content.selectors';
 import { Content, EditorContent } from 'src/app/root-store/content-store/model/content.model';
 
@@ -32,7 +32,8 @@ export class ContentViewerComponent implements OnInit {
           }
 
           return content;
-        })
+        }),
+        take(1)
       );
   constructor(private store: Store, private domSanitizer: DomSanitizer) { }
 

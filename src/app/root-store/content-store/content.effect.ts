@@ -27,7 +27,6 @@ export class ContentEffect {
         map(content => {
           switch (action.sectionId) {
             case 'articles':
-              console.log('%c SET ARTICLES', 'color:fuchsia;font-weight:bold;', { content });
               return setArticles({ [action.sectionId]: content });
 
             case 'timetables':
