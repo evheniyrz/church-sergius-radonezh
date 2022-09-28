@@ -42,7 +42,7 @@ export class EditorComponent implements OnInit, OnDestroy {
     '#4682B4', '#B0C4DE', '#ADD8E6', '#87CEEB', '#00BFFF', '#1E90FF', '#6495ED', '#4169E1', '#0000FF', '#00008B', '#191970',
     '#D2B48C', '#BC8F8F', '#F4A460', '#DAA520', '#B8860B', '#CD853F', '#D2691E', '#8B4513', '#A0522D', '#A52A2A', '#800000',
     '#FFFFFF', '#FFFAFA', '#F0FFF0', '#F5FFFA', '#F0FFFF', '#F8F8FF', '#F5F5F5', '#FFF5EE', '#F5F5DC', '#FFFAF0', '#FFFFF0', '#FAEBD7', '#FFE4E1',
-    '#FFD700', '#FFFF00', '#FFFFE0', '#BDB76B', '#FFFACD', '#FFEFD5', '#FFE4B5', '#FFDAB9', '#EEE8AA', '#F0E68C'
+    '#FFD700', '#FFFF00', '#FFFFE0', '#BDB76B', '#FFFACD', '#FFEFD5', '#FFE4B5', '#FFDAB9', '#EEE8AA', '#F0E68C', '#8f5922'
   ];
 
   public editorForm: FormGroup;

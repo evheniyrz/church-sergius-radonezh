@@ -6,8 +6,9 @@
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
+    font-family: 'Ponomar Unicode';
     letter-spacing: 1px;
-    color: brown;
+    color: #8f5922;
     margin: 30px 0;
   }
 
@@ -78,8 +79,9 @@
         text-align: center;
         font-size: 25px;
         font-weight: bold;
+        font-family: 'Ponomar Unicode';
         line-height: 35px;
-        color: brown;
+        color: #8f5922;
       }
 
       ::ng-deep .pheaderheader {
@@ -108,10 +110,19 @@
         gap: 10px;
       }
 
+      ::ng-deep .ptroparionheader + .normaltext {
+        p > b {
+          font-family: 'Ponomar Unicode';
+          font-size: 16px;
+          color: #8f5922;
+        }
+      }
+
       ::ng-deep .scriptureheader,
       ::ng-deep .troparionheader {
           font-size: 25px;
           font-weight: bold;
+          font-family: 'Ponomar Unicode';
         }
     }
   }

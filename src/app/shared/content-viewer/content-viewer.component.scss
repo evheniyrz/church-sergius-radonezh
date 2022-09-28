@@ -86,15 +86,12 @@
     );
 
     @each $header, $size in $font-size {
-        #{$header}{ font-size: $size; }
+        #{$header}{ font-size: $size; line-height: $size; font-family: 'Ponomar Unicode';}
     }
-
-      h1,h2,h3,h4,h5,h6 {
-        font-family: 'Ponomar Unicode';
-      }
 
       h1 {
         text-align: center;
+        color: #8f5922;
       }
 
       p {
