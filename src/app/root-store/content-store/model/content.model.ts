@@ -23,18 +23,16 @@ export interface TimetableContent {
     startDate: string;
     endDate: string;
   };
-  timetables: [
+  timetables:
+  {
+    date: string;
+    description:
     {
-      date: string;
-      description: [
-        {
-          hours: string;
-          minutes: string;
-          text: string;
-        }
-      ]
-    }
-  ]
+      hours: string;
+      minutes: string;
+      text: string;
+    }[]
+  }[]
 }
 export interface Content {
   id: string;

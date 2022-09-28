@@ -1,9 +1,9 @@
 import { Component, Inject, Input, LOCALE_ID, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
+import { exhaustMap, map, Observable, tap } from 'rxjs';
 import { selectContentList } from 'src/app/root-store/content-store/content.selectors';
-import { EditorContent, TimetableContent } from 'src/app/root-store/content-store/model/content.model';
+import { Content, ContentType, EditorContent, TimetableContent } from 'src/app/root-store/content-store/model/content.model';
 import { selectRouteNestedParams } from 'src/app/root-store/root.selectors';
 import { ContentList } from 'src/app/shared/grid-list/grid-list.component';
 import { DatePipe } from '@angular/common';
@@ -19,48 +19,59 @@ import { DatePipe } from '@angular/common';
 export class ContentListComponent implements OnInit {
   @Input() isAdminRoute = false;
 
-  public contentList$: Observable<ContentList[] | undefined> = this.store.select(selectContentList).pipe(
-    map(content => {
+  public contentType: ContentType = 'articles';
 
-      let contentList: ContentList[] | undefined = [] as ContentList[];
+  public contentList$: Observable<ContentList[] | undefined> = this.store.select(selectRouteNestedParams).pipe(
+    tap(params => {
+      if (null != params && 'sectionId' in params) {
+        this.contentType = params['sectionId'];// navigation - :sectionId
+      }
 
-      contentList = content?.map(element => {
+    }),
+    exhaustMap(() => this.store.select(selectContentList).pipe(
+      map((content: Content[] | null) => {
 
-        let headingElement;
-        let imageElement;
-        switch (element.content.editorContent.type) {
-          case 'formGroupValue':
+        let contentList: ContentList[] | undefined = [] as ContentList[];
 
-            headingElement = {
-              startDay: this.datePipe.transform((element.content.editorContent.content as TimetableContent).dateRange.startDate, 'dd-MMMM-yyyy', '', this.locale),
-              endDay: this.datePipe.transform((element.content.editorContent.content as TimetableContent).dateRange.endDate, 'dd-MMMM-yyyy', '', this.locale)
-            };
+        contentList = content?.map(element => {
 
-            break;
+          let headingElement;
+          let imageElement;
+          switch (element.content.editorContent.type) {
+            case 'formGroupValue':
 
-          default:
-            headingElement = (element.content.editorContent.content as EditorContent[]).find(element => element.type === 'heading' && (element.attrs.level === 1 || element.attrs.level === 2));
-            imageElement = (element.content.editorContent.content as EditorContent[]).find(element => element.type === 'paragraph' && element.content[0].type === 'image');
-            break;
-        }
+              headingElement = {
+                startDay: this.datePipe.transform((element.content.editorContent.content as TimetableContent).dateRange.startDate, 'dd-MMMM-yyyy', '', this.locale),
+                endDay: this.datePipe.transform((element.content.editorContent.content as TimetableContent).dateRange.endDate, 'dd-MMMM-yyyy', '', this.locale)
+              };
+
+              break;
+
+            default:
+              headingElement = (element.content.editorContent.content as EditorContent[]).find(element => element.type === 'heading' && (element.attrs.level === 1 || element.attrs.level === 2));
+              imageElement = (element.content.editorContent.content as EditorContent[]).find(element => element.type === 'paragraph' && element.content[0].type === 'image');
+              break;
+          }
 
 
 
-        const adminPageContent: ContentList = {
-          contentId: element.id,
-          title: headingElement?.content?.[0].text ? headingElement?.content?.[0].text : (headingElement as { startDay: string; endDay: string; })?.startDay ? `${(headingElement as { startDay: string; endDay: string; })['startDay']} --- ${(headingElement as { startDay: string; endDay: string; })['endDay']}` : 'title unavailable',
-          date: element.createdAt,
-          author: element.author,
-          imgSrc: imageElement?.content[0].attrs?.src ?? '',
-          contentType: element.contentType
-        } as ContentList;
+          const adminPageContent: ContentList = {
+            contentId: element.id,
+            title: headingElement?.content?.[0].text ? headingElement?.content?.[0].text : (headingElement as { startDay: string; endDay: string; })?.startDay ? `${(headingElement as { startDay: string; endDay: string; })['startDay']} --- ${(headingElement as { startDay: string; endDay: string; })['endDay']}` : 'title unavailable',
+            date: element.createdAt,
+            author: element.author,
+            imgSrc: imageElement?.content[0].attrs?.src ?? '',
+            contentType: element.contentType
+          } as ContentList;
 
-        return adminPageContent;
-      });
+          return adminPageContent;
+        });
 
-      return contentList;
-    })
-  );
+        return contentList;
+      })
+    ))
+  )
+
   public contentSection$: Observable<Params> = this.store.select(selectRouteNestedParams);
 
   constructor(private store: Store, private datePipe: DatePipe, @Inject(LOCALE_ID) private locale: string) { }

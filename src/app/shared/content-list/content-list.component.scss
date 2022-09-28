@@ -1,6 +1,18 @@
 :host {
   display: block;
 
+  .content-list {
+    .content-title {
+      text-align: center;
+      font-size: 40px;
+      margin: 16px auto;
+      padding: 16px;
+      color: brown;
+      width: fit-content;
+      font-family: 'Ponomar Unicode';
+    }
+  }
+
   .default-content {
     p {
       font-size: 18px;

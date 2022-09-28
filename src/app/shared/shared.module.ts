@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,7 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TimetablesEditorComponent } from './timetables-editor/timetables-editor.component';
 import { GridListComponent } from './grid-list/grid-list.component';
-import { MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarViewerComponent } from './calendar-viewer/calendar-viewer.component';
@@ -22,6 +22,13 @@ import { ContentListComponent } from './content-list/content-list.component';
 import { ContentViewerComponent } from './content-viewer/content-viewer.component';
 import { ContentResolver } from './services/content/content.resolver';
 
+
+@Injectable()
+export class CustomDateAdapter extends NativeDateAdapter {
+  override getFirstDayOfWeek(): number {
+    return 1;
+  }
+}
 
 @NgModule(
   {
@@ -99,7 +106,8 @@ import { ContentResolver } from './services/content/content.resolver';
     ],
     providers: [
       MatDatepickerModule,
-      ContentResolver
+      ContentResolver,
+      { provide: DateAdapter, useClass: CustomDateAdapter }
     ]
   }
 )

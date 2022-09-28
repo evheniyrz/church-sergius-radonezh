@@ -1,4 +1,10 @@
 <section *ngIf="contentList$ | async; let contentList; else warningTemplate;" class="content-list">
+  <ng-container [ngSwitch]="contentType">
+    <h2 *ngSwitchCase="'timetables'" class="content-title">Расписания служб</h2>
+    <h2 *ngSwitchCase="'preachings'" class="content-title">Проповеди</h2>
+    <h2 *ngSwitchCase="'sayings'" class="content-title">Слово Дня</h2>
+    <h2 *ngSwitchDefault class="content-title">Статьи</h2>
+  </ng-container>
   <ng-container [ngSwitch]="contentList.length > 0">
     <ng-container *ngIf="contentSection$ | async; let sectionParams">
       <div *ngSwitchCase="true" class="content-list__add-new">

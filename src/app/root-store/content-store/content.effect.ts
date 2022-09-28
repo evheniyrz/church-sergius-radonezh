@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { exhaustMap, map, tap } from 'rxjs';
+import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { CalendarApiResponse } from 'src/app/api/services/calendar-api/model/calendar-api-response.model';
 import { CalendarService } from 'src/app/api/services/calendar/calendar.service';
 import { ContentService } from 'src/app/api/services/content/content.service';
@@ -41,6 +41,11 @@ export class ContentEffect {
             default:
               return contentErrorAction({ message: `Unrecognized section ID => ${action.sectionId}` });
           }
+        }),
+        catchError((errorResponse) => {
+          return of(errorResponse).pipe(
+            map(() => contentErrorAction({ message: errorResponse.error }))
+          );
         })
       );
     })
@@ -152,8 +157,15 @@ export class ContentEffect {
           }
         })
       )
+    }),
+    catchError((errorResponse) => {
+      return of(errorResponse).pipe(
+        map(() => contentErrorAction({ message: errorResponse.error }))
+      );
     })
-  ));
+  ), {
+    useEffectsErrorHandler: false
+  });
 
   showLoader$ = createEffect(() => this.actions$.pipe(
     ofType(...[
@@ -164,7 +176,9 @@ export class ContentEffect {
       updateContent.type,
       deleteContent.type
     ]),
-    map(() => showLoader())
+    map((action) => {
+      return showLoader()
+    })
   ));
 
   hideLoader$ = createEffect(() => this.actions$.pipe(
@@ -188,6 +202,8 @@ export class ContentEffect {
       deleteSaying.type,
       setCalendar.type
     ]),
-    map(() => hideLoader())
+    map((action) => {
+      return hideLoader();
+    })
   ));
 }

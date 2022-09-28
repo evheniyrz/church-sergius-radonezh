@@ -1,7 +1,43 @@
-<div class="papyrus-background"></div>
+
 <ng-container *ngIf="pageContent$ | async; let content;">
   <ng-container [ngSwitch]="content.type">
-    <div *ngSwitchCase="'doc'" [innerHtml]="content.content" class="topic-container"></div>
-    <div *ngSwitchDefault>timetable</div>
+    <div class="content-view-container">
+      <div class="papyrus-background"></div>
+      <div class="pagination-button-container left">
+        <button mat-stroked-button class="paginator-button previous">
+          <img src="assets/ornaments/golden_pointer.png" width="50" height="50" class="pagination-icon left-icon">
+        </button>
+      </div>
+      <div class="pagination-button-container right">
+        <button mat-stroked-button class="paginator-button next">
+          <img src="assets/ornaments/golden_pointer.png" width="50" height="50" class="pagination-icon right-icon">
+        </button>
+      </div>
+      <div *ngSwitchCase="'doc'" [innerHtml]="content.htmlContent" class="topic-container"></div>
+      <div *ngSwitchDefault class="topic-container timetable">
+        <h1 class="timetable-page-title">расписание богослужений</h1>
+        <h2 class="timetable-list-date">
+          <span>{{content.timetableContent?.dateRange?.startDate | date}}</span>
+          <span> - </span>
+          <span>{{content.timetableContent?.dateRange?.endDate | date}}</span>
+        </h2>
+        <div class="weekly-timetable-list">
+          <ng-container *ngFor="let cardContent of content.timetableContent?.timetables">
+            <div class="timetable-card">
+              <h3 class="timetable-card-date">{{cardContent.date | date:'fullDate' | titlecase}}</h3>
+              <div class="timetable-card-date-divider">
+                <img src="assets/ornaments/thin-divider.png" alt="divider">
+              </div>
+              <ng-container *ngFor="let descriptionContent of cardContent.description">
+                <div class="description">
+                  <p class="description-time">{{descriptionContent.hours}} : {{descriptionContent.minutes}}</p>
+                  <p class="description-text">{{descriptionContent.text}}</p>
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
   </ng-container>
 </ng-container>
