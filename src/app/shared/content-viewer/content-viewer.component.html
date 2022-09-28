@@ -24,7 +24,7 @@
         <div class="weekly-timetable-list">
           <ng-container *ngFor="let cardContent of content.timetableContent?.timetables">
             <div class="timetable-card">
-              <h3 class="timetable-card-date">{{cardContent.date | date:'fullDate' | titlecase}}</h3>
+              <h3 class="timetable-card-date">{{cardContent.date | date:'fullDate'}}</h3>
               <div class="timetable-card-date-divider">
                 <img src="assets/ornaments/thin-divider.png" alt="divider">
               </div>
