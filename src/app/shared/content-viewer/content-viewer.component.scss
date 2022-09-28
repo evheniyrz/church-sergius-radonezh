@@ -51,17 +51,11 @@
       width: min-content;
 
       &.left {
-        left: 0;
-        @media screen and (max-width: 560px) {
-          left: -10px;
-        }
+        left: -10px;
       }
 
       &.right {
-        right: 0;
-        @media screen and (max-width: 560px) {
-          right: -10px;
-        }
+        right: -10px;
       }
 
       .paginator-button {
