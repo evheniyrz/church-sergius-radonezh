@@ -2,9 +2,13 @@
   .grid-content-container {
     display: grid;
     gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 320px));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
     grid-auto-rows: auto;
     padding: 15px;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
 
     .content-card {
       background-color: #eeeeee;
