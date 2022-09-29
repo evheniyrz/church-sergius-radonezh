@@ -23,8 +23,8 @@
         <a [routerLink]="['view', content.contentId]">{{content.title}}</a>
       </h3>
       <p class="content-create">
-        <span class="author"><small><strong>author: </strong></small>{{content.author}}</span>
-        <span class="created-at"><small><strong>createdAt: </strong></small>{{content.date | date}}</span>
+        <span class="author"><strong>автор: </strong>{{content.author}}</span>
+        <span class="created-at"><strong>опубликовано: </strong>{{content.date | date}}</span>
       </p>
       <div *ngIf="content.edit && isAdmin" class="edit">
         <span class="editor"><small><strong>editor: </strong></small>{{content.author}}</span>

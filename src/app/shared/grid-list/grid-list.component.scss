@@ -17,15 +17,14 @@
       overflow: hidden;
 
       &.public {
-        background-color: rgba($color: #ffffff, $alpha: 0.2);
+        background-color: rgba($color: #f5deb3, $alpha: 0.5);
         backdrop-filter: blur(5px);
       }
 
       .card-header {
         display: flex;
         align-items: center;
-        min-height: 40px;
-        padding: 5px;
+        padding: 10px;
 
         .tile-header-button {
           border: 1px solid #ffffff;
@@ -46,7 +45,7 @@
         .item-image {
           display: block;
           max-width: 100%;
-          aspect-ratio: 1/1;
+          aspect-ratio: 1;
           object-position: center;
           object-fit: cover;
         }
@@ -55,11 +54,52 @@
       .content-description {
         padding: 15px;
 
+        .title {
+          background: linear-gradient(0deg, brown 1px, transparent 1px);
+
+          a {
+            font-family: "Ponomar Unicode";
+            font-size: 24px;
+            line-height: 32px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            overflow: hidden;
+            color: rebeccapurple;
+
+            &::first-letter {
+              color: #76091b;
+            }
+          }
+        }
+
         .content-create {
           display: flex;
+          flex-flow: row wrap;
           align-items: center;
           justify-content: space-between;
           margin-bottom: 0;
+          font-size: 18px;
+          font-family: "Ponomar Unicode";
+          color: rebeccapurple;
+
+          .author,
+          .created-at {
+            &::first-letter {
+              font-family: 'Vertograd Unicode';
+              color: #76091b;
+            }
+
+            strong {
+              letter-spacing: 1px;
+            }
+          }
+
+          .author {}
+
+          .created-at {}
         }
 
         .edit {
