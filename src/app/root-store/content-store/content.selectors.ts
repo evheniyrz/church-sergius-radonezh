@@ -20,7 +20,15 @@ const {
 const calendarSelectors = calendarEntityAdapter.getSelectors();
 
 export const selectContentEntities = createSelector(contentRootFeatureSelector, selectRouteParams, (state, { sectionId }) => {
-  return selectEntities(state[sectionId]);
+  return sectionId ? selectEntities(state[sectionId]) : {};
+});
+
+export const selectContentIds = createSelector(contentRootFeatureSelector, selectRouteParams, (state, { sectionId }) => {
+  return sectionId ? selectIds(state[sectionId]) : [];
+});
+
+export const selectContentTotal = createSelector(contentRootFeatureSelector, selectRouteParams, (state, { sectionId }) => {
+  return selectTotal(state[sectionId]);
 });
 
 export const selectCalendarEntities = createSelector(contentRootFeatureSelector, selectRouteParams, (state, { sectionId }) => {
