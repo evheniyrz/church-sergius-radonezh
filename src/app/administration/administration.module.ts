@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ContentEditorComponent } from './components/content-editor/content-editor.component';
 import { SharedModule } from '../shared/shared.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     MatIconModule,
     MatTooltipModule,
+    MatSidenavModule,
     SharedModule
   ]
 })

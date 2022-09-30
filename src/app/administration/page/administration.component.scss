@@ -1,66 +1,90 @@
 :host {
-  display: grid;
-  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
   width: 100vw;
-  grid-template-columns: 250px 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas:
-  "nav-section content";
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f5f5f5;
 
-  .admin-dashboard__nav-section {
-    grid-area: nav-section;
-    background-color: #5353f7;
-    padding-top: 20px;
+  .admin-panel-header {
+    display: flex;
+    align-items: center;
 
-    .admin-dashboard__nav {
-      height: 100%;
-      width: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
+    button,
+    .admin-panel-header-title {
+      margin-right: auto;
+    }
 
-      .admin-dashboard__nav-list {
-        width: 100%;
-        height: auto;
-        list-style: none;
-        padding: 0;
-        margin: 0;
+    .admin-panel-header-title {
+      font-family: 'Ponomar Unicode';
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+  }
 
-        .admin-dashboard__nav-item {
-          margin-bottom: 10px;
+  .admin-sidenav {
+    flex: 1 0;
+    background-color: transparent;
 
-          a {
-            display: flex;
-            flex-flow: row nowrap;
-            align-items: center;
-            text-decoration: none;
-            color: #ffffff;
-            padding: 10px 0 10px 20px;
+    mat-drawer {
+      background-color: #5353f7;
+      backdrop-filter: blur(5px);
 
-            &.active,
-            &:hover {
-              color: #6495ed;
-              background-color: rgba(255, 255, 255, .84 );
-            }
+      .admin-dashboard__nav-section {
+        padding-top: 20px;
 
-            span {
-              font-size: 18px;
-              margin-left: 10px;
+        .admin-dashboard__nav {
+          height: 100%;
+          width: 100%;
+          overflow-x: hidden;
+          overflow-y: auto;
+
+          .admin-dashboard__nav-list {
+            width: 100%;
+            height: auto;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            .admin-dashboard__nav-item {
+              margin-bottom: 10px;
+
+              a {
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                text-decoration: none;
+                color: #ffffff;
+                padding: 10px 0 10px 20px;
+
+                &.active,
+                &:hover {
+                  color: #6495ed;
+                  background-color: rgba(255, 255, 255, .84 );
+                }
+
+                span {
+                  font-size: 18px;
+                  margin-left: 10px;
+                }
+              }
             }
           }
         }
       }
     }
-  }
 
-  .admin-dashboard__content {
-    grid-area: content;
-    background-color: #f5f5f5;
+    mat-drawer-content {
+      padding: 0 20px;
 
-    .no-section-loaded {
-      .info {
-        text-transform: uppercase;
-        text-align: center;
-        margin: 12px 0;
+      .admin-dashboard__content {
+        .no-section-loaded {
+          .info {
+            text-transform: uppercase;
+            text-align: center;
+            margin: 12px 0;
+          }
+        }
       }
     }
   }

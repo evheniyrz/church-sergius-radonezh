@@ -8,9 +8,8 @@
   <ng-container [ngSwitch]="contentList.length > 0">
     <ng-container *ngIf="contentSection$ | async; let sectionParams">
       <div *ngSwitchCase="true" class="content-list__add-new">
-          <a *ngIf="sectionParams['isAdmin']" [routerLink]="['add-new']">Add new {{sectionParams['sectionId']}}</a>
+          <a mat-stroked-button *ngIf="sectionParams['isAdmin']" [routerLink]="['add-new']" class="add-content-button">Add new {{sectionParams['sectionId']}}</a>
           <app-grid-list [contentList]="contentList" [isAdmin]="sectionParams['isAdmin']"></app-grid-list>
-
       </div>
       <div *ngSwitchDefault class="default-content">
         <p>No content has been created for this section yet</p>
