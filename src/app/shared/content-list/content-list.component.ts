@@ -41,15 +41,15 @@ export class ContentListComponent implements OnInit {
             case 'formGroupValue':
 
               headingElement = {
-                startDay: this.datePipe.transform((element.content.editorContent.content as TimetableContent).dateRange.startDate, 'dd-MMMM-yyyy', '', this.locale),
-                endDay: this.datePipe.transform((element.content.editorContent.content as TimetableContent).dateRange.endDate, 'dd-MMMM-yyyy', '', this.locale)
+                startDay: this.datePipe.transform((element.content.editorContent.content as TimetableContent).dateRange.startDate, 'dd-LLL-yyyy', '', this.locale),
+                endDay: this.datePipe.transform((element.content.editorContent.content as TimetableContent).dateRange.endDate, 'dd-LLL-yyyy', '', this.locale)
               };
 
               break;
 
             default:
               headingElement = (element.content.editorContent.content as EditorContent[]).find(element => element.type === 'heading' && (element.attrs.level === 1 || element.attrs.level === 2));
-              imageElement = (element.content.editorContent.content as EditorContent[]).find(element => element.type === 'paragraph' && element.content[0].type === 'image');
+              imageElement = (element.content.editorContent.content as EditorContent[]).find(element => element.type === 'paragraph' && element.content?.[0].type === 'image');
               break;
           }
 
@@ -57,7 +57,7 @@ export class ContentListComponent implements OnInit {
 
           const adminPageContent: ContentList = {
             contentId: element.id,
-            title: headingElement?.content?.[0].text ? headingElement?.content?.[0].text : (headingElement as { startDay: string; endDay: string; })?.startDay ? `${(headingElement as { startDay: string; endDay: string; })['startDay']} --- ${(headingElement as { startDay: string; endDay: string; })['endDay']}` : 'title unavailable',
+            title: headingElement?.content?.[0].text ? headingElement?.content?.[0].text : (headingElement as { startDay: string; endDay: string; })?.startDay ? `${(headingElement as { startDay: string; endDay: string; })['startDay']} - ${(headingElement as { startDay: string; endDay: string; })['endDay']}` : 'title unavailable',
             date: element.createdAt,
             author: element.author,
             imgSrc: imageElement?.content[0].attrs?.src ?? '',

@@ -16,7 +16,7 @@
       </ng-container>
     </div>
     <div class="content-image">
-      <img *ngIf="content.imgSrc" [src]="content.imgSrc" alt="" class="item-image">
+      <img *ngIf="content.contentType !== 'timetables'" [src]="content.imgSrc ? content.imgSrc : '/assets/backgrounds/no-image.svg'" alt="" class="item-image">
     </div>
     <div class="content-description">
       <h3 class="title">
