@@ -9,6 +9,8 @@
   .admin-panel-header {
     display: flex;
     align-items: center;
+    padding: 15px 15px 10px;
+    background: linear-gradient(to top, #cfcfcf, transparent);
 
     button,
     .admin-panel-header-title {

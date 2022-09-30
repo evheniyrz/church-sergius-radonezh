@@ -13,6 +13,7 @@
 
     .content-card {
       background-color: #eeeeee;
+      background-image: linear-gradient(90deg, #c0c0c0, transparent, transparent 10% 90%, transparent, #c0c0c0);
       box-shadow: 5px 5px 5px 0px #3232328f;
       border-radius: 10px;
       overflow: hidden;
@@ -49,10 +50,8 @@
           aspect-ratio: 1;
           object-position: center;
           object-fit: contain;
-          background: linear-gradient(90deg, #c0c0c0, transparent, transparent 10% 90%, transparent,  #c0c0c0);
           backdrop-filter: brightness(0.5);
           margin: 0 auto;
-          // url(/assets/backgrounds/no-image.svg) 50% 50% / 75% 75% no-repeat,
         }
       }
 
