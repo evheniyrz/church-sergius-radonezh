@@ -1,1 +1,5 @@
-<mat-calendar (selectedChange)="dateChange($event)" [(selected)]="selectedDate" class="app-calendar"></mat-calendar>
+<mat-calendar
+  (selectedChange)="dateChange($event)"
+  [(selected)]="selectedDate"
+  [dateClass]="dateStyleFn"
+  class="app-calendar"></mat-calendar>

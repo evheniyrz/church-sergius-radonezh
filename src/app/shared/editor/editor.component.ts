@@ -6,6 +6,8 @@ import { postContentAction, updateContent } from 'src/app/root-store/content-sto
 import { Content, ContentType } from 'src/app/root-store/content-store/model/content.model';
 import { UserLoginState } from 'src/app/root-store/user-login-store/models/login-payload.model';
 
+import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
+
 
 @Component({
   selector: 'app-editor',
@@ -52,6 +54,14 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   private contentId: string | null | undefined;
 
+  private cloud: Cloudinary = new Cloudinary({
+    cloud: {
+      cloudName: 'dez6wqxm3',
+      apiKey: '996177314634473',
+      apiSecret: 'c_aciY_d_T0s_lNzyCucEY5hguA'
+    }
+  });
+
   constructor(private fb: FormBuilder, private store: Store) {
     this.editor = new Editor();
     // this.editor.setContent(value);
@@ -65,6 +75,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // this.cloud.image
   }
 
   public postContent(): void {

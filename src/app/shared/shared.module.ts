@@ -21,6 +21,7 @@ import { CalendarViewerComponent } from './calendar-viewer/calendar-viewer.compo
 import { ContentListComponent } from './content-list/content-list.component';
 import { ContentViewerComponent } from './content-viewer/content-viewer.component';
 import { ContentResolver } from './services/content/content.resolver';
+import { CloudinaryModule } from '@cloudinary/ng';
 
 
 @Injectable()
@@ -80,7 +81,8 @@ export class CustomDateAdapter extends NativeDateAdapter {
           title: 'Title',
           remove: 'Remove',
         },
-      })
+      }),
+      CloudinaryModule
     ],
     declarations: [
       LoginFormComponent,

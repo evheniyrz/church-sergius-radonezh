@@ -36,3 +36,28 @@
     border-color: rgba(255, 255, 255, 0.38);
     border-width: 2px;
 }
+
+::ng-deep .app-calendar .mat-calendar-body-cell {
+  &.red-date-highlight {
+    .mat-calendar-body-cell-content {
+      font-weight: 500;
+      color: #ff0000;
+    }
+  }
+  &.border-highlight {
+    .mat-calendar-body-cell-content {
+      border-color: red;
+    }
+  }
+  &.fast-days-highlight {
+    .mat-calendar-body-cell-content {
+      background-color: rgba(221, 221, 221, 0.2);
+    }
+  }
+  &.fast-days-of-lent {
+    .mat-calendar-body-cell-content {
+      background-color: rgba(221, 221, 221, 0.2);
+      color: #222222;
+    }
+  }
+}
