@@ -6,6 +6,7 @@ import { PlatformService } from 'src/app/api/services/platform/platform.service'
 import { loadFrontPageCalendar } from 'src/app/root-store/content-store/content.actions';
 import { selectCalendarItem } from 'src/app/root-store/content-store/content.selectors';
 import { Calendar } from 'src/app/root-store/content-store/model/content.model';
+import { HolidaySymbolConf, HOLIDAY_SYMBOLS } from './model/holiday-symbols';
 
 @Component({
   selector: 'app-calendar-viewer',
@@ -17,6 +18,7 @@ export class CalendarViewerComponent implements OnInit {
   @Input() currentDate: boolean = false;
 
   public calendarContent$!: Observable<string | SafeHtml>;
+  public symbolList: HolidaySymbolConf[] = HOLIDAY_SYMBOLS;
 
   constructor(
     private store: Store,

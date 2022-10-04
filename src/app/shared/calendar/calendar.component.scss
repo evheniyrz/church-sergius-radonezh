@@ -60,4 +60,10 @@
       color: #222222;
     }
   }
+  &.sergiy-days-highlight {
+    .mat-calendar-body-cell-content {
+      background-color: rgba(9, 194, 34, 0.4);
+      color: #ffffff;
+    }
+  }
 }
