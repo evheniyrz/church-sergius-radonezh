@@ -12,6 +12,7 @@ import mongoose from 'mongoose';
 import { userRouter } from './db-routes/user-routes';
 import { contentRouter } from 'db-routes/content-routes';
 import { corsRouter } from 'cors-route/cors-route';
+import { cloudinaryCorsRouter } from 'cors-route/cloudinary-cors-route';
 
 require('dotenv').config();
 
@@ -24,7 +25,8 @@ export function app(): express.Express {
     .use(bodyParser.json())
     .use(userRouter)
     .use(contentRouter)
-    .use(corsRouter);
+    .use(corsRouter)
+    .use(cloudinaryCorsRouter);
   const distFolder = join(process.cwd(), 'dist/nik-prav/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 

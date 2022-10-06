@@ -19,11 +19,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   imports: [
     CommonModule,
     AdministrationRoutingModule,
+    SharedModule,
     ReactiveFormsModule,
     MatIconModule,
     MatTooltipModule,
-    MatSidenavModule,
-    SharedModule
+    MatSidenavModule
   ]
 })
 export class AdministrationModule { }

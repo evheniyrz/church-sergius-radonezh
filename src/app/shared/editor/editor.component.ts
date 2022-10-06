@@ -7,12 +7,17 @@ import { Content, ContentType } from 'src/app/root-store/content-store/model/con
 import { UserLoginState } from 'src/app/root-store/user-login-store/models/login-payload.model';
 
 import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
+import { CloudinaryService } from './service/cloudinary/cloudinary.service';
+import { fromEvent, take, tap } from 'rxjs';
 
 
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.scss']
+  styleUrls: ['./editor.component.scss'],
+  providers: [
+    CloudinaryService
+  ]
 })
 export class EditorComponent implements OnInit, OnDestroy {
   @Input() contentConfig?: { userData: UserLoginState | null | undefined; sectionId: string; };
@@ -52,6 +57,8 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   public isContentUnderEdit = false;
 
+  public assetDirectoryList$ = this.cloudService.getAssetDirectoryList();
+
   private contentId: string | null | undefined;
 
   private cloud: Cloudinary = new Cloudinary({
@@ -62,11 +69,12 @@ export class EditorComponent implements OnInit, OnDestroy {
     }
   });
 
-  constructor(private fb: FormBuilder, private store: Store) {
+  constructor(private fb: FormBuilder, private store: Store, private cloudService: CloudinaryService) {
     this.editor = new Editor();
     // this.editor.setContent(value);
     // const html = toHTML(this.jsonDoc);
     // this.jsonDoc = toDOC(htmlString);
+
     this.editorForm = this.fb.group(
       {
         editorContent: this.fb.control('', Validators.required())
@@ -75,7 +83,13 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.cloud.image
+    fromEvent(window, 'beforeunload').pipe(
+      tap(() => {
+        console.log('SUBSCR UNLOAD');
+        this.editor.destroy()
+      }),
+      take(1)
+    ).subscribe()
   }
 
   public postContent(): void {
@@ -101,6 +115,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log('DESTROY');
     this.editor.destroy();
   }
 
