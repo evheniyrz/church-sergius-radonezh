@@ -32,31 +32,33 @@ Router.use(cors(corsOptions)).get('/resources/search', function (req, res, next)
       body.push(chunk);
     })
       .on('end', () => {
-        res.json({ body });
+        res.json(bufferToJSON(body));
       })
   }).end();
 });
 
 function bufferToJSON(response: Buffer[]) {
-  let convertedData = {};
+  let convertedDataString = '';
+  let responseJSON = {};
   try {
     const utf8decoder = new TextDecoder();
 
-    convertedData = response.reduce((acc: {}, bufferChunk) => {
+    convertedDataString = response.reduce((acc: string, bufferChunk) => {
       let bytes = Uint8Array.from(bufferChunk);
 
-      acc = {
-        ...acc,
-        ...JSON.parse(utf8decoder.decode(bytes))
-      };
+      acc = acc.concat(utf8decoder.decode(bytes))
       return acc;
-    }, {});
+    }, '');
+
+    if (convertedDataString.startsWith('{') && convertedDataString.endsWith('}')) responseJSON = JSON.parse(convertedDataString);
+    else responseJSON = { error: convertedDataString };
+
 
   } catch (error) {
-    console.log('%c ERROR CORS CONVERTED DATA', 'color: brown', { error, convertedData });
+    console.log('%c ERROR CORS CONVERTED DATA', 'color: brown', { error, convertedDataString });
   }
 
-  return convertedData;
+  return responseJSON;
 }
 
 function createGetRequestOptions(url: string): https.RequestOptions {

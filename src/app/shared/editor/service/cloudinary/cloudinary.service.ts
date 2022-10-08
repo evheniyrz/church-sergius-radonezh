@@ -22,7 +22,7 @@ export class CloudinaryService {
   }
 
   public getImageList(assetFolderName: string): Observable<CloudinaryAssets> {
-    return this.http.get<CloudinaryAssets>(`/resources/search?expression=folder=site/${assetFolderName}`);
+    return this.http.get<CloudinaryAssets>(`/resources/search?expression=folder=site/${assetFolderName};with_field=context`);
   }
 
   private bufferToJSON(response: { body: { type: 'Buffer', data: number[]; }[] }) {

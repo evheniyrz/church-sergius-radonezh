@@ -8,7 +8,9 @@ import { UserLoginState } from 'src/app/root-store/user-login-store/models/login
 
 import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
 import { CloudinaryService } from './service/cloudinary/cloudinary.service';
-import { fromEvent, take, tap } from 'rxjs';
+import { exhaustMap, fromEvent, Subject, take, takeUntil, tap } from 'rxjs';
+import { CloudinaryAssetResources, CloudinaryAssets } from './service/cloudinary/models/cloud-directory-list.model';
+import { TRANSLATE_MAP } from './service/cloudinary/models/asset-directories-translate.model';
 
 
 @Component({
@@ -53,11 +55,16 @@ export class EditorComponent implements OnInit, OnDestroy {
   ];
 
   public editorForm: FormGroup;
-  public imgUrlSelect: FormControl = new FormControl('');
+  public imgUrlSelect: FormControl = new FormControl({ value: null, disabled: true });
+  public selectAsset: FormControl = new FormControl('');
 
   public isContentUnderEdit = false;
 
   public assetDirectoryList$ = this.cloudService.getAssetDirectoryList();
+
+  public imageLIst: CloudinaryAssetResources[] = [];
+
+  public translate: Map<string, string> = TRANSLATE_MAP;
 
   private contentId: string | null | undefined;
 
@@ -68,6 +75,8 @@ export class EditorComponent implements OnInit, OnDestroy {
       apiSecret: 'c_aciY_d_T0s_lNzyCucEY5hguA'
     }
   });
+
+  private onDestroy$: Subject<void> = new Subject();
 
   constructor(private fb: FormBuilder, private store: Store, private cloudService: CloudinaryService) {
     this.editor = new Editor();
@@ -83,13 +92,22 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    fromEvent(window, 'beforeunload').pipe(
-      tap(() => {
-        console.log('SUBSCR UNLOAD');
-        this.editor.destroy()
+    this.selectAsset.valueChanges.pipe(
+      exhaustMap((assetName: string) => {
+        return this.cloudService.getImageList(assetName).pipe(
+          tap((assets: CloudinaryAssets) => {
+            console.log('%c ASSETS', 'color:blue', assets);
+            this.imageLIst = assets.resources;
+            if (this.imageLIst.length) {
+              this.imgUrlSelect.enable();
+            } else {
+              this.imgUrlSelect.disable();
+            }
+          })
+        );
       }),
-      take(1)
-    ).subscribe()
+      takeUntil(this.onDestroy$)
+    ).subscribe();
   }
 
   public postContent(): void {
@@ -117,6 +135,8 @@ export class EditorComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log('DESTROY');
     this.editor.destroy();
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
 }
