@@ -40,6 +40,14 @@
           "configurations": {
             "production": {
               "sourceMap": false,
+              "aot": true,
+              "commonChunk": true,
+              "buildOptimizer": true,
+              "optimization": {
+                "fonts": true,
+                "scripts": true,
+                "styles": true
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -166,6 +174,12 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "analyze": {
+          "builder": "@ngx-builders/analyze:analyze",
+          "options": {
+            "outputPath": "dist/nik-prav/browser"
+          }
         }
       }
     }
