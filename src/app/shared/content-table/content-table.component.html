@@ -1,0 +1,83 @@
+<div class="table-container mat-elevation-z8">
+  <div class="search-box-container">
+    <label for="table-filter">
+      <mat-icon>search</mat-icon>
+    </label>
+    <input [formControl]="searchControl" type="search" name="filter" placeholder="Поиск в таблице..." id="table-filter">
+  </div>
+  <table mat-table matSort [dataSource]="dataSource">
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef class="position-column-header-cell col-small">
+        <span>No.</span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <span>{{element.position}}</span>
+      </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef  class="action-column-header-cell col-small">
+        <span>Action</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="action-row-cell col-small">
+        <ng-container *ngTemplateOutlet="actionTemplate; context: element"></ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="author">
+      <th mat-header-cell *matHeaderCellDef  class="action-column-header-cell col-small">
+        <span>Author</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="action-row-cell col-small">
+        <span>{{element.author}}</span>
+      </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef class="image-column-header-cell col-small">
+        <span>Image</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="image-row-cell col-small">
+        <div class="image-container">
+          <img [src]="element.image" alt="">
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef class="title-column-header-cell">
+        <span>Title</span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <span>{{element.title}}</span>
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="date-column-header-cell col-small">
+        <span>Created at</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="col-small">
+        <span>{{element.date | date}}</span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr *matNoDataRow class="mat-row">
+      <td [colSpan]="displayedColumns.length" class="mat-cell">Data not found</td>
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                  showFirstLastButtons
+                  aria-label="Select page of publications">
+  </mat-paginator>
+</div>
+
+<ng-template #actionTemplate let-contentId="contentId">
+  <app-table-action [contentID]="contentId"></app-table-action>
+</ng-template>

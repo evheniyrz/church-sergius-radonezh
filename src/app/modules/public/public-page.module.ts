@@ -7,12 +7,14 @@ import { PublicPageComponent } from './public-page.component';
 import { PublicPageHeaderComponent } from './components/public-page-header/public-page-header.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CalendarDataResolver } from './pages/calendar/calendar-data-resolver/calendar-data.resolver';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 
 @NgModule({
   declarations: [
     PublicPageComponent,
-    PublicPageHeaderComponent
+    PublicPageHeaderComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,

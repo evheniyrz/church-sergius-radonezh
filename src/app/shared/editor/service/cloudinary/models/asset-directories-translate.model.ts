@@ -1,11 +1,11 @@
 export const TRANSLATE_MAP = new Map<string, string>(
   [
-    ['agios_martyras', 'Св. мученик'],
+    ['agios_martyras', 'Свщ. мученики'],
     ['apostolous', 'Апостолы'],
     ['enaretos', 'Праведные'],
     ['evlogimenos', 'Блаженные'],
     ['heavenly_hosts', 'Небесные воинства'],
-    ['martyrs', 'мученики'],
+    ['martyrs', 'Мученики'],
     ['parthena', 'Пречистая'],
     ['propatores', 'Праотцы'],
     ['prophets', 'Пророки'],

@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PublicPageComponent } from './public-page.component';
 import { CalendarDataResolver } from './pages/calendar/calendar-data-resolver/calendar-data.resolver';
+import { ContentListComponent } from 'src/app/shared/content-list/content-list.component';
+import { ContentResolver } from 'src/app/shared/services/content/content.resolver';
+import { ContentViewerComponent } from 'src/app/shared/content-viewer/content-viewer.component';
 
 const routes: Routes = [
   {
@@ -9,12 +12,23 @@ const routes: Routes = [
     component: PublicPageComponent,
     children: [
       {
-        path: '',
-        loadChildren: () => import('./pages/front-page/front-page.module').then(m => m.FrontPageModule)
+        path: ':sectionId',
+        component: ContentListComponent,
+        resolve: {
+          content: ContentResolver
+        },
+        data: { isAdmin: false }
       },
       {
-        path: 'publication',
-        loadChildren: () => import('./pages/public-resource/public-resource.module').then(m => m.PublicResourceModule),
+        path: ':sectionId/view/:contentId',
+        component: ContentViewerComponent,
+        resolve: {
+          content: ContentResolver
+        },
+      },
+      {
+        path: '',
+        loadChildren: () => import('./pages/front-page/front-page.module').then(m => m.FrontPageModule)
       },
       {
         path: 'calendar',

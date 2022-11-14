@@ -5,6 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { EditorComponent } from './editor/editor.component';
 import { NgxEditorModule } from 'ngx-editor';
@@ -22,6 +25,8 @@ import { ContentListComponent } from './content-list/content-list.component';
 import { ContentViewerComponent } from './content-viewer/content-viewer.component';
 import { ContentResolver } from './services/content/content.resolver';
 import { CloudinaryModule } from '@cloudinary/ng';
+import { ContentTableComponent } from './content-table/content-table.component';
+import { TableActionComponent } from './content-table/components/table-action/table-action.component';
 
 
 @Injectable()
@@ -47,6 +52,9 @@ export class CustomDateAdapter extends NativeDateAdapter {
       MatTooltipModule,
       MatDatepickerModule,
       MatNativeDateModule,
+      MatTableModule,
+      MatPaginatorModule,
+      MatSortModule,
       NgxEditorModule.forChild({
         locals: {
           // menu
@@ -93,6 +101,8 @@ export class CustomDateAdapter extends NativeDateAdapter {
       CalendarViewerComponent,
       ContentListComponent,
       ContentViewerComponent,
+      ContentTableComponent,
+      TableActionComponent,
     ],
     exports: [
       MatButtonModule,

@@ -5,6 +5,7 @@ import { ContentListComponent } from '../shared/content-list/content-list.compon
 import { AdministrationComponent } from './page/administration.component';
 import { ContentResolver } from '../shared/services/content/content.resolver';
 import { ContentViewerComponent } from '../shared/content-viewer/content-viewer.component';
+import { ContentTableComponent } from '../shared/content-table/content-table.component';
 
 const routes: Routes = [
   {
@@ -18,14 +19,14 @@ const routes: Routes = [
       },
       {
         path: ':sectionId',
-        component: ContentListComponent,
+        component: ContentTableComponent,
         resolve: {
           content: ContentResolver
         },
         data: { isAdmin: true }
       },
       {
-        path: ':sectionId/:contentId',
+        path: ':sectionId/edit/:contentId',
         component: ContentEditorComponent
       },
       {

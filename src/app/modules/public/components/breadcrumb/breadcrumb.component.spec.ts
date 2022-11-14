@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PublicResourceComponent } from './public-resource.component';
+import { BreadcrumbComponent } from './breadcrumb.component';
 
-describe('PublicResourceComponent', () => {
-  let component: PublicResourceComponent;
-  let fixture: ComponentFixture<PublicResourceComponent>;
+describe('BreadcrumbComponent', () => {
+  let component: BreadcrumbComponent;
+  let fixture: ComponentFixture<BreadcrumbComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PublicResourceComponent ]
+      declarations: [ BreadcrumbComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PublicResourceComponent);
+    fixture = TestBed.createComponent(BreadcrumbComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
