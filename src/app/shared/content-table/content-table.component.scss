@@ -3,6 +3,7 @@
   padding-block-start: 20px;
 
   .table-container {
+    overflow-x: auto;
     .search-box-container {
       display: flex;
       flex-flow: row nowrap;
@@ -11,6 +12,8 @@
       max-width: 100%;
       background-color: #fff;
       padding: 15px 15px 20px;
+      position: sticky;
+      left: 0px;
 
       label {
         width: 34px;
