@@ -4,7 +4,8 @@
 <a [routerLink]="['view', contentID]" mat-icon-button class="tile-header-button">
   <mat-icon matTooltip="view/просмотреть">visibility</mat-icon>
 </a>
+<mat-slide-toggle [(ngModel)]="isChecked" [matTooltip]="isChecked ? 'Скрыть на главной' : 'Отображать на главной'"></mat-slide-toggle>
 <!-- show on main page -->
-<button mat-icon-button color="accent"class="tile-header-button">
+<button mat-icon-button color="accent" (click)="deleteItem(contentID)" class="tile-header-button">
   <mat-icon matTooltip="delete/удалить">delete_outline</mat-icon>
 </button>

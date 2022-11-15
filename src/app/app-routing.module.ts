@@ -5,6 +5,11 @@ import { AdminPageGuard } from './guards/admin-page/admin-page.guard';
 
 const routes: Routes = [
   {
+    path: 'home',
+    redirectTo: '',
+    pathMatch: 'full'
+  },
+  {
     path: 'administration',
     loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule),
     canActivate: [AdminPageGuard]
@@ -16,11 +21,6 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./modules/public/public-page.module').then(m => m.PublicPageModule),
-  },
-  {
-    path: 'home',
-    redirectTo: '',
-    pathMatch: 'full'
   },
   {
     path: '**',

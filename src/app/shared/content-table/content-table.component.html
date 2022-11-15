@@ -1,9 +1,13 @@
 <div class="table-container mat-elevation-z8">
-  <div class="search-box-container">
+  <div class="action-box-container">
     <label for="table-filter">
       <mat-icon>search</mat-icon>
     </label>
     <input [formControl]="searchControl" type="search" name="filter" placeholder="Поиск в таблице..." id="table-filter">
+
+    <a [routerLink]="['add-new']" mat-fab matTooltip="Добавить новый" class="add-content-button">
+      <mat-icon>add</mat-icon>
+    </a>
   </div>
   <table mat-table matSort [dataSource]="dataSource">
     <!-- Position Column -->
@@ -79,5 +83,5 @@
 </div>
 
 <ng-template #actionTemplate let-contentId="contentId">
-  <app-table-action [contentID]="contentId"></app-table-action>
+  <app-table-action [contentID]="contentId" (onDeleteItem)="deleteItem($event)"></app-table-action>
 </ng-template>

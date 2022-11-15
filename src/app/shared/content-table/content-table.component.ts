@@ -5,8 +5,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { map, tap } from 'rxjs';
+import { deleteContent } from 'src/app/root-store/content-store/content.actions';
 import { selectContentList } from 'src/app/root-store/content-store/content.selectors';
-import { EditorContent, TimetableContent } from 'src/app/root-store/content-store/model/content.model';
+import { EditorContent, TimetableContent, ContentType } from 'src/app/root-store/content-store/model/content.model';
 
 export interface TableData {
   contentId: string;
@@ -32,6 +33,8 @@ export class ContentTableComponent implements OnInit, AfterViewInit {
   public dataSource!: MatTableDataSource<TableData>;
   public displayedColumns: string[] = ['position', 'action', 'author', 'image', 'title', 'date'];
 
+  private sectionId!: ContentType;
+
   constructor(private readonly store: Store) { }
 
   ngOnInit(): void {
@@ -39,7 +42,11 @@ export class ContentTableComponent implements OnInit, AfterViewInit {
       .pipe(
         map((resp, index) => {
           // console.log('%c CONTENT RESP', 'color:blue', { resp });
+
           const tableContent = resp?.map((payload, position) => {
+            if (null == this.sectionId) {
+              this.sectionId = payload.contentType;
+            }
             return {
               position,
               image: this.getImageSrc(payload.content.editorContent.content, payload.content.editorContent.type),
@@ -67,6 +74,11 @@ export class ContentTableComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.dataSource.filterPredicate = this.filter;
+  }
+
+  public deleteItem(eventValue: { contentId: string; }): void {
+    console.log('DELETE ITEM IN TABLE', eventValue);
+    this.store.dispatch(deleteContent({ contentId: eventValue.contentId, sectionId: this.sectionId }))
   }
 
   private getTitle(content: EditorContent[] | TimetableContent, contentType: 'doc' | 'formGroupValue' | 'html'): string {

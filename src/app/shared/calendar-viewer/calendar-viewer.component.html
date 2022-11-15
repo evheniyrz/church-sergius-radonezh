@@ -1,16 +1,18 @@
 <h2 class="calendar-component-header">православный календарь</h2>
-<div class="holiday-symbols">
-  <div class="parchment"></div>
-  <h2 class="holiday-list-title">разряды праздников</h2>
-  <ul class="holiday-symbols-list">
-    <ng-container *ngFor="let symbol of symbolList">
-      <li class="holiday-symbols-list-item">
-        <img [src]="symbol.symbolSrc" [alt]="symbol.description">
-        <span class="description">{{symbol.description}}</span>
-      </li>
-    </ng-container>
-  </ul>
-</div>
+<ng-container *ngIf="!currentDate">
+  <div class="holiday-symbols">
+    <div class="parchment"></div>
+    <h2 class="holiday-list-title">разряды праздников</h2>
+    <ul class="holiday-symbols-list">
+      <ng-container *ngFor="let symbol of symbolList">
+        <li class="holiday-symbols-list-item">
+          <img [src]="symbol.symbolSrc" [alt]="symbol.description">
+          <span class="description">{{symbol.description}}</span>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</ng-container>
 <div class="calendar-divider top-divider"></div>
 
 <ng-container *ngIf="calendarContent$ | async; let html;">

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Injectable, NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,6 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { EditorComponent } from './editor/editor.component';
 import { NgxEditorModule } from 'ngx-editor';
@@ -27,6 +29,8 @@ import { ContentResolver } from './services/content/content.resolver';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { ContentTableComponent } from './content-table/content-table.component';
 import { TableActionComponent } from './content-table/components/table-action/table-action.component';
+import { ConfirmDialogComponent } from './confirm-dialog/component/confirm-dialog.component';
+import { ConfirmDialogService } from './confirm-dialog/service/confirm-dialog.service';
 
 
 @Injectable()
@@ -42,7 +46,7 @@ export class CustomDateAdapter extends NativeDateAdapter {
       CommonModule,
       RouterModule,
       ReactiveFormsModule,
-      ReactiveFormsModule,
+      FormsModule,
       MatButtonModule,
       MatInputModule,
       MatFormFieldModule,
@@ -55,6 +59,8 @@ export class CustomDateAdapter extends NativeDateAdapter {
       MatTableModule,
       MatPaginatorModule,
       MatSortModule,
+      MatSlideToggleModule,
+      MatDialogModule,
       NgxEditorModule.forChild({
         locals: {
           // menu
@@ -103,6 +109,7 @@ export class CustomDateAdapter extends NativeDateAdapter {
       ContentViewerComponent,
       ContentTableComponent,
       TableActionComponent,
+      ConfirmDialogComponent,
     ],
     exports: [
       MatButtonModule,
@@ -119,7 +126,8 @@ export class CustomDateAdapter extends NativeDateAdapter {
     providers: [
       MatDatepickerModule,
       ContentResolver,
-      { provide: DateAdapter, useClass: CustomDateAdapter }
+      { provide: DateAdapter, useClass: CustomDateAdapter },
+      ConfirmDialogService
     ]
   }
 )
