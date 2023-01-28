@@ -1,17 +1,21 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Editor, Toolbar, Validators } from 'ngx-editor';
+import { Editor, NgxEditorComponent, Toolbar, Validators } from 'ngx-editor';
+import { Plugin } from 'prosemirror-state';
+
+
 import { postContentAction, updateContent } from 'src/app/root-store/content-store/content.actions';
 import { Content, ContentType } from 'src/app/root-store/content-store/model/content.model';
 import { UserLoginState } from 'src/app/root-store/user-login-store/models/login-payload.model';
 
-import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
+import { Cloudinary } from '@cloudinary/url-gen';
 import { CloudinaryService } from './service/cloudinary/cloudinary.service';
-import { exhaustMap, fromEvent, Subject, take, takeUntil, tap } from 'rxjs';
+import { exhaustMap, Subject, takeUntil, tap } from 'rxjs';
 import { CloudinaryAssetResources, CloudinaryAssets } from './service/cloudinary/models/cloud-directory-list.model';
 import { TRANSLATE_MAP } from './service/cloudinary/models/asset-directories-translate.model';
-
+import { PlatformService } from 'src/app/api/services/platform/platform.service';
+import { SelectionSizeTooltip } from './plugins/tooltip/editor-tooltip';
 
 @Component({
   selector: 'app-editor',
@@ -21,7 +25,8 @@ import { TRANSLATE_MAP } from './service/cloudinary/models/asset-directories-tra
     CloudinaryService
   ]
 })
-export class EditorComponent implements OnInit, OnDestroy {
+export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('editorHref', { read: NgxEditorComponent }) editorComponent!: NgxEditorComponent;
   @Input() contentConfig?: { userData: UserLoginState | null | undefined; sectionId: string; };
   @Input() set contentToEdit(contentToEdit: Content | null | undefined) {
     if (null != contentToEdit) {
@@ -67,6 +72,7 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   public translate: Map<string, string> = TRANSLATE_MAP;
 
+
   private contentId: string | null | undefined;
 
   private cloud: Cloudinary = new Cloudinary({
@@ -79,11 +85,14 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   private onDestroy$: Subject<void> = new Subject();
 
-  constructor(private fb: FormBuilder, private store: Store, private cloudService: CloudinaryService) {
-    this.editor = new Editor();
+  constructor(private fb: FormBuilder, private store: Store, private cloudService: CloudinaryService, private platform: PlatformService) {
+    this.editor = new Editor({
+    });
     // this.editor.setContent(value);
     // const html = toHTML(this.jsonDoc);
     // this.jsonDoc = toDOC(htmlString);
+    // if (this.platform.isBrowser())
+    this.editor.features.resizeImage
 
     this.editorForm = this.fb.group(
       {
@@ -97,7 +106,6 @@ export class EditorComponent implements OnInit, OnDestroy {
       exhaustMap((assetName: string) => {
         return this.cloudService.getImageList(assetName).pipe(
           tap((assets: CloudinaryAssets) => {
-            console.log('%c ASSETS', 'color:blue', assets);
             this.imageLIst = assets.resources;
             if (this.imageLIst.length) {
               this.imgUrlSelect.enable();
@@ -109,6 +117,16 @@ export class EditorComponent implements OnInit, OnDestroy {
       }),
       takeUntil(this.onDestroy$)
     ).subscribe();
+  }
+
+  ngAfterViewInit(): void {
+    const myPlg: Plugin = new Plugin({
+      view: (editorView) => {
+        return new SelectionSizeTooltip(editorView);
+      }
+    });
+
+    this.editor.registerPlugin(myPlg);
   }
 
   public postContent(): void {
