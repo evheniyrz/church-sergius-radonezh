@@ -43,7 +43,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.15.2",
     "mongoose": "^6.3.3",
-    "ngx-editor": "^12.4.1",
+    "ngx-editor": "^15.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
