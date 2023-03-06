@@ -43,7 +43,7 @@ const updateContent = (req: Request, resp: Response) => {
   baseContentSchema.set('collection', sectionId as string);
   mongoose.model(sectionId as string, baseContentSchema).findOneAndUpdate({ _id: id }, content, { new: true })
     .then(dbResponse => {
-      dbResponse.id = dbResponse._id.toString();
+      if (null != dbResponse) dbResponse.id = dbResponse._id.toString();
 
       resp.status(200).send(dbResponse);
     });

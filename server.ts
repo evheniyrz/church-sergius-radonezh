@@ -60,7 +60,7 @@ function run(): void {
   const server = app();
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
-
+    mongoose.set('strictQuery', false);
     mongoose
       .connect(`${process.env['MONGO_PROTOCOL']}${process.env['MONGO_HOST']}${process.env['MONGO_PATH']}${process.env['MONGO_PARAMS']}`)
       .then((resp: any) => console.log('===DB CONNECTION SUCCESSFUL==='))
