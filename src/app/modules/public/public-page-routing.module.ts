@@ -28,11 +28,11 @@ const routes: Routes = [
       },
       {
         path: '',
-        loadChildren: () => import('./pages/front-page/front-page.module').then(m => m.FrontPageModule)
+        loadComponent: () => import('./pages/front-page/front-page.component').then(m => m.FrontPageComponent)
       },
       {
-        path: 'calendar',
-        loadChildren: () => import('./pages/calendar/calendar.module').then(m => m.CalendarModule),
+        path: 'calendar/:date',
+        loadComponent: () => import('../../shared/calendar-viewer/calendar-viewer.component').then(m => m.CalendarViewerComponent),
         resolve: {
           calendar: CalendarDataResolver
         }

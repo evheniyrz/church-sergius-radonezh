@@ -5,9 +5,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { PublicPageRoutingModule } from './public-page-routing.module';
 import { PublicPageComponent } from './public-page.component';
 import { PublicPageHeaderComponent } from './components/public-page-header/public-page-header.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { CalendarDataResolver } from './pages/calendar/calendar-data-resolver/calendar-data.resolver';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { CalendarComponent } from 'src/app/shared/calendar/calendar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     CommonModule,
     PublicPageRoutingModule,
     MatSidenavModule,
-    SharedModule
+    CalendarComponent,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [
     CalendarDataResolver

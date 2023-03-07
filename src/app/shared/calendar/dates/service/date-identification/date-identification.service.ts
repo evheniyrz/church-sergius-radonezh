@@ -3,7 +3,7 @@ import { DateAdapter } from '@angular/material/core';
 import { dateMapM } from '../../dates-map';
 
 @Injectable()
-export class DatesService {
+export class DateIdentificationService {
 
   constructor(private _dateAdapter: DateAdapter<Date>) { }
 

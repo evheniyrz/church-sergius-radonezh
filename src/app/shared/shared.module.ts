@@ -21,8 +21,6 @@ import { TimetablesEditorComponent } from './timetables-editor/timetables-editor
 import { GridListComponent } from './grid-list/grid-list.component';
 import { DateAdapter, MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
-import { CalendarComponent } from './calendar/calendar.component';
-import { CalendarViewerComponent } from './calendar-viewer/calendar-viewer.component';
 import { ContentListComponent } from './content-list/content-list.component';
 import { ContentViewerComponent } from './content-viewer/content-viewer.component';
 import { ContentResolver } from './services/content/content.resolver';
@@ -103,8 +101,6 @@ export class CustomDateAdapter extends NativeDateAdapter {
       EditorComponent,
       GridListComponent,
       TimetablesEditorComponent,
-      CalendarComponent,
-      CalendarViewerComponent,
       ContentListComponent,
       ContentViewerComponent,
       ContentTableComponent,
@@ -118,8 +114,6 @@ export class CustomDateAdapter extends NativeDateAdapter {
       EditorComponent,
       GridListComponent,
       TimetablesEditorComponent,
-      CalendarComponent,
-      CalendarViewerComponent,
       ContentListComponent,
       ContentViewerComponent,
     ],

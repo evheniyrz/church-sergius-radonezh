@@ -1,17 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { DateRange, MatCalendarCellClassFunction } from '@angular/material/datepicker';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { DateAdapter, MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
+import { DateRange, MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/material/datepicker';
 import { Event as Event_2, NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { loadCalendar } from 'src/app/root-store/content-store/content.actions';
-import { DatesService } from './dates/service/dates/dates.service';
+import { CustomDateAdapter } from '../shared.module';
+import { DateIdentificationService } from './dates/service/date-identification/date-identification.service';
 
 @Component({
+  standalone: true,
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
+  imports: [
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
   providers: [
-    DatesService
+    MatDatepickerModule,
+    DateIdentificationService,
+    { provide: DateAdapter, useClass: CustomDateAdapter },
   ]
 })
 export class CalendarComponent implements OnInit {
@@ -67,7 +76,7 @@ export class CalendarComponent implements OnInit {
   constructor(
     private store: Store,
     private router: Router,
-    private _ds: DatesService) { }
+    private _ds: DateIdentificationService) { }
 
   ngOnInit(): void {
     this.router.events.pipe(

@@ -1,3 +1,4 @@
+import { AsyncPipe, CommonModule, NgForOf, NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
@@ -11,7 +12,13 @@ import { HolidaySymbolConf, HOLIDAY_SYMBOLS } from './model/holiday-symbols';
 @Component({
   selector: 'app-calendar-viewer',
   templateUrl: './calendar-viewer.component.html',
-  styleUrls: ['./calendar-viewer.component.scss']
+  styleUrls: ['./calendar-viewer.component.scss'],
+  standalone: true,
+  imports: [
+    NgForOf,
+    NgIf,
+    AsyncPipe
+  ]
 })
 export class CalendarViewerComponent implements OnInit {
 
